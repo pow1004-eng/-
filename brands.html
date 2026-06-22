@@ -1,0 +1,257 @@
+<title>퍼시스 · 브랜드 디렉토리</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:#FAFAF8;color:#1C1917;font-size:15px;line-height:1.5}
+:root{--g:#FAFAF8;--w:#FFFFFF;--t:#1C1917;--t2:#78716C;--t3:#A8A29E;--a:#C17F3E;--ab:rgba(193,127,62,.09);--abr:rgba(193,127,62,.22);--bd:#E8E4DF;--sh:0 1px 3px rgba(28,25,23,.07);--r:12px;--na:#3B82F6;--eu:#10B981;--jp:#EF4444;--kr:#C17F3E}
+.app{display:flex;height:100vh;overflow:hidden}
+/* SIDEBAR */
+.sb{width:216px;flex-shrink:0;background:var(--w);border-right:1px solid var(--bd);display:flex;flex-direction:column;overflow-y:auto}
+.sb-logo{padding:16px 14px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--bd)}
+.sb-sub{font-size:12px;color:var(--t3);margin-top:2px}
+.sb-srch{padding:10px;border-bottom:1px solid var(--bd)}
+.sb-srch-in{display:flex;align-items:center;gap:7px;background:var(--g);border:1px solid var(--bd);border-radius:8px;padding:5px 9px}
+.sb-srch-ic{color:var(--t3);font-size:13px}
+.sb-srch input{border:none;background:none;outline:none;font-size:14px;color:var(--t);width:100%}
+.sb-srch input::placeholder{color:var(--t3)}
+.sb-nav{flex:1;padding:6px 8px}
+.sb-grp{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);padding:10px 8px 4px}
+.sbl{display:flex;align-items:center;gap:9px;padding:7px 9px 7px 12px;border-radius:8px;cursor:pointer;color:var(--t2);font-size:14px;font-weight:500;border:none;border-left:2.5px solid transparent;background:none;width:100%;text-align:left;text-decoration:none;transition:background .12s,color .12s}
+.sbl:hover{background:var(--g);color:var(--t)}
+.sbl.on{background:var(--ab);color:var(--a);border-left-color:var(--a);font-weight:600}
+.sbl-ic{width:15px;text-align:center;font-size:15px;flex-shrink:0}
+.sbl-cnt{margin-left:auto;background:var(--g);color:var(--t3);font-size:12px;font-weight:600;padding:1px 6px;border-radius:8px}
+.sbl.on .sbl-cnt{background:var(--ab);color:var(--a)}
+.sb-div{height:1px;background:var(--bd);margin:5px 4px}
+.sb-user{padding:12px 14px;border-top:1px solid var(--bd);display:flex;align-items:center;gap:9px;margin-top:auto}
+.sb-av{width:30px;height:30px;border-radius:50%;background:var(--a);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-uname{font-size:14px;font-weight:600}
+.sb-ubadge{font-size:11px;font-weight:600;background:var(--ab);color:var(--a);padding:1px 6px;border-radius:4px;display:inline-block;margin-top:2px}
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.tb{background:var(--w);border-bottom:1px solid var(--bd);padding:11px 22px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-t{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.tb-s{font-size:13px;color:var(--t3);margin-top:1px}
+.cnt{flex:1;overflow-y:auto;padding:20px 22px 32px;display:flex;flex-direction:column;gap:24px}
+/* REGION */
+.reg-sec{display:flex;flex-direction:column;gap:12px}
+.reg-hd{display:flex;align-items:center;gap:10px;padding:0 2px}
+.reg-hd-bar{width:3px;height:18px;border-radius:2px;flex-shrink:0}
+.reg-hd-name{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.reg-hd-count{font-size:12px;color:var(--t3);font-weight:500}
+.reg-hd-line{flex:1;height:1px;background:var(--bd)}
+/* BRAND CARD GRID */
+.bdc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.bdc{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:7px;text-decoration:none;color:inherit;box-shadow:var(--sh);transition:box-shadow .15s,border-color .15s;text-align:center}
+.bdc:hover{box-shadow:0 4px 14px rgba(28,25,23,.09);border-color:#D8D3CC}
+.bdc-av{width:40px;height:40px;border-radius:10px;overflow:hidden;flex-shrink:0}
+.bdc-name{font-size:13px;font-weight:700;line-height:1.3;color:var(--t)}
+.bdc-country{font-size:11px;color:var(--t3)}
+.bdc-cat{font-size:11px;color:var(--t2);line-height:1.4;margin-top:1px}
+.bdc-link{font-size:11px;font-weight:700;color:var(--a);margin-top:4px}
+.bdc:hover .bdc-link{text-decoration:underline}
+/* SEARCH FILTER */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap}
+.fbtn{padding:5px 14px;border-radius:20px;border:1px solid var(--bd);background:var(--w);color:var(--t2);font-size:12px;font-weight:600;cursor:pointer;transition:all .12s}
+.fbtn:hover,.fbtn.on{background:var(--ab);color:var(--a);border-color:var(--abr)}
+</style>
+
+<div class="app">
+<aside class="sb">
+  <div class="sb-logo">
+    <div>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAAAlCAYAAAA9UhmxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP0SURBVHhe7Zs9duIwEMcnWyUhZ0BlsuQKa5UBzoBpgSusSRfgDEAZzBlIysi5QvJSIp9h923pLfiy9RF/yWAn83tPBbLeSMJ/a0Ya+ywIggAQpAL8ECsQpKygWJHKgGJFKgOKFakMKFakMmjFelG7KrQsXHffV7Pdlq432+3IeJISZ4t5nnQ9S2m229Bst2HhusA5j4xBRa8/gJvGrWQnTxmNJ3v7o/FEun7TuI2MISlJbXHOodcfSG3zlrA2wmjFinwOYx4w5kGvP4DeYKAVLOd8fwN0baoI8zy4adxqhVUEKFYDMLa5cczzxEvQGwzEqi9Br3/8eaFYDdLrR1dYzjkwJgu46jDPO4mXQLEahHMOC3d5+O37ketfhVMIFdKKdT6bwr+/f4yUrm2L5k/K89NKGuNnZT6bAiFENAPea/xK+vH+JtnLUu6Hjmj6pIjjy1p02kglVuRA17bB7nTEamDsNC7yO4BizQEhdbEKAEC54iL5QbHmwF0e4tMdKNTiONO9InhRuxKroGvbUK+rV5O0UGoBtSyA7UG+uGum1ILn1SpSl4Q4W8zzoNmSEw5p5ub7vnZHnKSvoZM91qTUAlKvSw/FaDyB8eSQJIDtg6MKVeLwXjdnyGEIIfDx/gYAAAvXVR5d5ZkXIXVtrLojlVhNMp9N94OLE1ga4mzpBGSK8LyK7CvcD2jEapKwWIua1+7h0m0cMQwwSNe2IwKiliWtgKbo9QeR7BGlGy91DEhCD5QWzjm4y6UyuQIoVnNQasF8NhWrM7nhpIRjZmpZsW7UFISQXC7/MzjnWg+BYjUE574yhr0fOjB0nEJWWPGYbOj8LkxEIl27U1hfnKuTKaliVkotsH6ZcTddu7O/gXFxZhribOnirTQbLO/V04rz4/1NKcydaxPHlhTf95Uvjaj645xvN4Dqmx5H3AYrTBF9wTbBIBFoOL+sSeVxsRCbGeGu1ZL6umu1xGaJiLP1wph0/fyyFrwwFrETx3q9Dq5/NiQ7D6Ox2NQIunGv12uxaW4eRmOpn+ufDbGZER4XC6mv88ua2CwIgiDAMCAjhJD90VuYJOlWJBso1hyowoas7hCJB8WKVIbSipWxbJ+fqIJ1Upc3PMfC1Gcfqk2hiKnPZnRHR2FUnw9lKapMmI5SiNXUCcN3gxAinQQUhSo+LwpdgqMUYu3axR2cAwDYBds/Fbq3vorgmP+hbvEqhViLzIgMHeeoq8KxIIRkOofOQvilo6Kh1Cr/uwH3Qween1ZaF5AGQsgmEfC00k68qhBCoGvbygN6k+xCjKHjHOWhSNKXNoOFIGWjNCsrgsSBYkUqA4oVqQwoVqQyoFiRyoBiRSrDf3mTgsrkd3bMAAAAAElFTkSuQmCC" style="height:20px;display:block;mix-blend-mode:multiply" alt="FURSYS">
+      <div class="sb-sub">신제품 인텔리전스</div>
+    </div>
+  </div>
+  <div class="sb-srch">
+    <div class="sb-srch-in">
+      <span class="sb-srch-ic">🔍</span>
+      <input type="text" id="search-input" placeholder="브랜드 검색…" oninput="filterBrands(this.value)"/>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <a href="index.html" class="sbl"><span class="sbl-ic">⊞</span>대시보드</a>
+    <a href="brands.html" class="sbl on"><span class="sbl-ic">◎</span>브랜드<span class="sbl-cnt">40</span></a>
+    <a href="archive.html" class="sbl"><span class="sbl-ic">↗</span>월별 아카이브</a>
+    <div class="sb-grp">지역별</div>
+    <a href="#na" class="sbl"><span class="sbl-ic" style="color:#3B82F6">●</span>북미<span class="sbl-cnt">10</span></a>
+    <a href="#eu" class="sbl"><span class="sbl-ic" style="color:#10B981">●</span>유럽<span class="sbl-cnt">10</span></a>
+    <a href="#jp" class="sbl"><span class="sbl-ic" style="color:#EF4444">●</span>일본<span class="sbl-cnt">10</span></a>
+    <a href="#kr" class="sbl"><span class="sbl-ic" style="color:#C17F3E">●</span>국내<span class="sbl-cnt">10</span></a>
+  </nav>
+  <div class="sb-user">
+    <div class="sb-av">P</div>
+    <div><div class="sb-uname">pow1004</div><span class="sb-ubadge">신제품개발</span></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="tb">
+    <div>
+      <div class="tb-t">브랜드 디렉토리</div>
+      <div class="tb-s">4개 지역 · 40개 글로벌 브랜드 모니터링</div>
+    </div>
+    <div class="filter-bar" id="filter-bar">
+      <button class="fbtn on" onclick="filterRegion('all',this)">전체</button>
+      <button class="fbtn" onclick="filterRegion('na',this)">북미</button>
+      <button class="fbtn" onclick="filterRegion('eu',this)">유럽</button>
+      <button class="fbtn" onclick="filterRegion('jp',this)">일본</button>
+      <button class="fbtn" onclick="filterRegion('kr',this)">국내</button>
+    </div>
+  </div>
+
+  <div class="cnt" id="main-cnt">
+    <!-- 북미 -->
+    <div class="reg-sec" id="sec-na">
+      <div class="reg-hd">
+        <div class="reg-hd-bar" style="background:#3B82F6"></div>
+        <span class="reg-hd-name">북미 North America</span>
+        <span class="reg-hd-count">10개 브랜드</span>
+        <div class="reg-hd-line"></div>
+      </div>
+      <div class="bdc-grid" id="grid-na"></div>
+    </div>
+
+    <!-- 유럽 -->
+    <div class="reg-sec" id="sec-eu">
+      <div class="reg-hd">
+        <div class="reg-hd-bar" style="background:#10B981"></div>
+        <span class="reg-hd-name">유럽 Europe</span>
+        <span class="reg-hd-count">10개 브랜드</span>
+        <div class="reg-hd-line"></div>
+      </div>
+      <div class="bdc-grid" id="grid-eu"></div>
+    </div>
+
+    <!-- 일본 -->
+    <div class="reg-sec" id="sec-jp">
+      <div class="reg-hd">
+        <div class="reg-hd-bar" style="background:#EF4444"></div>
+        <span class="reg-hd-name">일본 Japan</span>
+        <span class="reg-hd-count">10개 브랜드</span>
+        <div class="reg-hd-line"></div>
+      </div>
+      <div class="bdc-grid" id="grid-jp"></div>
+    </div>
+
+    <!-- 국내 -->
+    <div class="reg-sec" id="sec-kr">
+      <div class="reg-hd">
+        <div class="reg-hd-bar" style="background:#C17F3E"></div>
+        <span class="reg-hd-name">국내 Korea</span>
+        <span class="reg-hd-count">10개 브랜드</span>
+        <div class="reg-hd-line"></div>
+      </div>
+      <div class="bdc-grid" id="grid-kr"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+var BRANDS = {
+  na: [
+    {name:'Steelcase',    country:'미국',    cat:'워크플레이스 시스템',  url:'https://www.steelcase.com',              bg:'#00467F', mark:'SC',  fs:14, fw:'700'},
+    {name:'Herman Miller',country:'미국',    cat:'인체공학·라운지',       url:'https://www.hermanmiller.com',           bg:'#D35F23', lines:['herman','miller']},
+    {name:'Haworth',      country:'미국',    cat:'오피스 솔루션',         url:'https://www.haworth.com',                bg:'#007A4D', mark:'H',   fs:20, fw:'700'},
+    {name:'Knoll',        country:'미국',    cat:'모더니즘·시스템가구',   url:'https://www.knoll.com',                  bg:'#111111', mark:'K',   fs:20, fw:'700'},
+    {name:'Teknion',      country:'캐나다',  cat:'워크플레이스 시스템',   url:'https://www.teknion.com',                bg:'#003A5D', mark:'T',   fs:20, fw:'700'},
+    {name:'Allsteel',     country:'미국',    cat:'오피스 시팅',           url:'https://www.allsteel.com',               bg:'#2E4057', mark:'AS',  fs:14, fw:'700'},
+    {name:'Humanscale',   country:'미국',    cat:'인체공학·승강데스크',   url:'https://www.humanscale.com',             bg:'#2D2D2D', mark:'HS',  fs:14, fw:'600'},
+    {name:'HON',          country:'미국',    cat:'중가형 오피스가구',      url:'https://www.hon.com',                    bg:'#CF4520', mark:'HON', fs:13, fw:'800'},
+    {name:'Kimball',      country:'미국',    cat:'계약가구·헬스케어',     url:'https://www.kimball.com',                bg:'#4A1942', mark:'K',   fs:20, fw:'700'},
+    {name:'Global Furniture Group', country:'캐나다', cat:'종합 오피스가구', url:'https://www.globalfurnituregroup.com', bg:'#1A4731', mark:'G',   fs:20, fw:'700'},
+  ],
+  eu: [
+    {name:'Vitra',         country:'스위스',   cat:'디자인·워크체어',       url:'https://www.vitra.com',           bg:'#CC0000', mark:'V',   fs:20, fw:'300', dots:true},
+    {name:'Kinnarps',      country:'스웨덴',   cat:'지속가능 오피스가구',   url:'https://www.kinnarps.com',        bg:'#003370', mark:'K',   fs:20, fw:'700'},
+    {name:'Wilkhahn',      country:'독일',     cat:'회의·인체공학',         url:'https://www.wilkhahn.com',        bg:'#1D3557', mark:'W',   fs:18, fw:'700'},
+    {name:'Bene',          country:'오스트리아',cat:'오피스 시스템',         url:'https://www.bene.com',            bg:'#1C2541', mark:'B',   fs:20, fw:'700'},
+    {name:'Sedus',         country:'독일',     cat:'인체공학 워크체어',     url:'https://www.sedus.com',           bg:'#1F3245', mark:'S',   fs:20, fw:'700'},
+    {name:'Senator Group', country:'영국',     cat:'계약가구·회의',         url:'https://www.senatorgroup.com',    bg:'#2D3561', mark:'SG',  fs:14, fw:'700'},
+    {name:'Hay',           country:'덴마크',   cat:'라이프스타일·계약',     url:'https://www.hay.com',             bg:'#FFD600', color:'#111', mark:'HAY', fs:13, fw:'900'},
+    {name:'Orangebox',     country:'영국',     cat:'협업·라운지',           url:'https://www.orangebox.com',       bg:'#E35205', mark:'O',   fs:20, fw:'700'},
+    {name:'Flokk',         country:'노르웨이', cat:'지속가능·인체공학',     url:'https://www.flokk.com',           bg:'#004A3F', mark:'F',   fs:20, fw:'700'},
+    {name:'Arper',         country:'이탈리아', cat:'라운지·계약가구',       url:'https://www.arper.com',           bg:'#8B6914', mark:'A',   fs:20, fw:'700'},
+  ],
+  jp: [
+    {name:'Okamura',        country:'일본', cat:'워크체어·스마트오피스',  url:'https://www.okamura.com',          bg:'#003F7F', mark:'O',  fs:20, fw:'700'},
+    {name:'Kokuyo',         country:'일본', cat:'IoT·스마트오피스',       url:'https://www.kokuyo.com',           bg:'#00316B', mark:'K',  fs:20, fw:'700'},
+    {name:'Itoki',          country:'일본', cat:'워크체어·오피스시스템',  url:'https://www.itoki.co.jp',          bg:'#006DB6', mark:'i',  fs:22, fw:'700'},
+    {name:'Uchida Yoko',    country:'일본', cat:'오피스 시스템',          url:'https://www.uchida.co.jp',         bg:'#1B3A6B', mark:'U',  fs:20, fw:'700'},
+    {name:'Plus Corporation',country:'일본',cat:'오피스·문구가구',        url:'https://www.plus.co.jp',           bg:'#3D2A10', mark:'+',  fs:22, fw:'700'},
+    {name:'Aichi',          country:'일본', cat:'워크체어 전문',          url:'https://www.aichi-net.co.jp',      bg:'#B22222', mark:'A',  fs:20, fw:'700'},
+    {name:'Karimoku',       country:'일본', cat:'목공·프리미엄 가구',     url:'https://www.karimoku.com',         bg:'#5C3317', mark:'K',  fs:20, fw:'700'},
+    {name:'Tendo Mokko',    country:'일본', cat:'전통 목공예 가구',       url:'https://www.tendo-mokko.co.jp',    bg:'#3D2B1F', mark:'T',  fs:20, fw:'700'},
+    {name:'Maruni',         country:'일본', cat:'목재 컨트랙트가구',      url:'https://www.maruni.com',           bg:'#1A1A1A', mark:'M',  fs:20, fw:'700'},
+    {name:'Askul',          country:'일본', cat:'오피스용품·가구',        url:'https://www.askul.co.jp',          bg:'#0066CC', mark:'A',  fs:20, fw:'700'},
+  ],
+  kr: [
+    {name:'퍼시스',      country:'한국', cat:'종합 오피스가구',      url:'https://www.fursys.co.kr',           bg:'#1C1917', fursys:true},
+    {name:'현대리바트',  country:'한국', cat:'오피스·주거가구',      url:'https://www.hyundailivart.co.kr',    bg:'#0A3D8F', mark:'리바트', fs:10, fw:'700'},
+    {name:'코아스',      country:'한국', cat:'오피스 시스템가구',    url:'https://www.ikoas.com',              bg:'#3730A3', mark:'코아스', fs:11, fw:'700'},
+    {name:'한샘',        country:'한국', cat:'홈퍼니싱·B2B 오피스', url:'https://www.hanssem.com',            bg:'#C8001E', mark:'한샘',  fs:13, fw:'700'},
+    {name:'시디즈',      country:'한국', cat:'인체공학 워크체어',    url:'https://www.sidiz.com',              bg:'#0D7377', mark:'시디즈', fs:10, fw:'700'},
+    {name:'데스커',      country:'한국', cat:'1인 오피스·홈오피스',  url:'https://www.desker.co.kr',           bg:'#374151', mark:'D',    fs:20, fw:'700'},
+    {name:'파트라',      country:'한국', cat:'홈오피스 솔루션',      url:'https://www.patra.co.kr',            bg:'#92400E', mark:'P',    fs:20, fw:'700'},
+    {name:'베스툴',      country:'한국', cat:'인체공학 의자',        url:'https://www.bestuhl.co.kr',          bg:'#1E40AF', mark:'B',    fs:20, fw:'700'},
+    {name:'에넥스',      country:'한국', cat:'주방·오피스가구',      url:'https://www.enex.co.kr',             bg:'#047857', mark:'E',    fs:20, fw:'700'},
+    {name:'동연디자인',  country:'한국', cat:'공간 디자인가구',      url:'https://www.dongyeon.co.kr',         bg:'#6D28D9', mark:'D',    fs:20, fw:'700'},
+  ]
+};
+
+var FURSYS_B64 = 'iVBORw0KGgoAAAANSUhEUgAAAKsAAAAlCAYAAAA9UhmxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP0SURBVHhe7Zs9duIwEMcnWyUhZ0BlsuQKa5UBzoBpgSusSRfgDEAZzBlIysi5QvJSIp9h923pLfiy9RF/yWAn83tPBbLeSMJ/a0Ya+ywIggAQpAL8ECsQpKygWJHKgGJFKgOKFakMKFakMmjFelG7KrQsXHffV7Pdlq432+3IeJISZ4t5nnQ9S2m229Bst2HhusA5j4xBRa8/gJvGrWQnTxmNJ3v7o/FEun7TuI2MISlJbXHOodcfSG3zlrA2wmjFinwOYx4w5kGvP4DeYKAVLOd8fwN0baoI8zy4adxqhVUEKFYDMLa5cczzxEvQGwzEqi9Br3/8eaFYDdLrR1dYzjkwJgu46jDPO4mXQLEahHMOC3d5+O37ketfhVMIFdKKdT6bwr+/f4yUrm2L5k/K89NKGuNnZT6bAiFENAPea/xK+vH+JtnLUu6Hjmj6pIjjy1p02kglVuRA17bB7nTEamDsNC7yO4BizQEhdbEKAEC54iL5QbHmwF0e4tMdKNTiONO9InhRuxKroGvbUK+rV5O0UGoBtSyA7UG+uGum1ILn1SpSl4Q4W8zzoNmSEw5p5ub7vnZHnKSvoZM91qTUAlKvSw/FaDyB8eSQJIDtg6MKVeLwXjdnyGEIIfDx/gYAAAvXVR5d5ZkXIXVtrLojlVhNMp9N94OLE1ga4mzpBGSK8LyK7CvcD2jEapKwWIua1+7h0m0cMQwwSNe2IwKiliWtgKbo9QeR7BGlGy91DEhCD5QWzjm4y6UyuQIoVnNQasF8NhWrM7nhpIRjZmpZsW7UFISQXC7/MzjnWg+BYjUE574yhr0fOjB0nEJWWPGYbOj8LkxEIl27U1hfnKuTKaliVkotsH6ZcTddu7O/gXFxZhribOnirTQbLO/V04rz4/1NKcydaxPHlhTf95Uvjaj645xvN4Dqmx5H3AYrTBF9wTbBIBFoOL+sSeVxsRCbGeGu1ZL6umu1xGaJiLP1wph0/fyyFrwwFrETx3q9Dq5/NiQ7D6Ox2NQIunGv12uxaW4eRmOpn+ufDbGZER4XC6mv88ua2CwIgiDAMCAjhJD90VuYJOlWJBso1hyowoas7hCJB8WKVIbSipWxbJ+fqIJ1Upc3PMfC1Gcfqk2hiKnPZnRHR2FUnw9lKapMmI5SiNXUCcN3gxAinQQUhSo+LwpdgqMUYu3axR2cAwDYBds/Fbq3vorgmP+hbvEqhViLzIgMHeeoq8KxIIRkOofOQvilo6Kh1Cr/uwH3Qween1ZaF5AGQsgmEfC00k68qhBCoGvbygN6k+xCjKHjHOWhSNKXNoOFIGWjNCsrgsSBYkUqA4oVqQwoVqQyoFiRyoBiRSrDf3mTgsrkd3bMAAAAAElFTkSuQmCC';
+
+function makeLogo(b, size) {
+  var s = size || 40;
+  var c = b.color || '#fff';
+  var inner = '<rect width="'+s+'" height="'+s+'" fill="'+b.bg+'"/>';
+  if (b.fursys) {
+    return '<div class="bdc-av" style="background:#fff;border:1px solid #E8E4DF;display:flex;align-items:center;justify-content:center;padding:6px"><img src="data:image/png;base64,'+FURSYS_B64+'" style="height:14px;mix-blend-mode:multiply" alt="FURSYS"></div>';
+  }
+  if (b.dots) {
+    inner += '<circle cx="'+(s*.72)+'" cy="'+(s*.2)+'" r="'+(s*.08)+'" fill="white" opacity="0.7"/>';
+    inner += '<circle cx="'+(s*.85)+'" cy="'+(s*.38)+'" r="'+(s*.06)+'" fill="white" opacity="0.45"/>';
+  }
+  if (b.lines) {
+    inner += '<text x="'+s/2+'" y="'+(s*.38)+'" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="'+(s*.22)+'" font-weight="300" font-family="Arial,sans-serif" letter-spacing="0.4">'+b.lines[0]+'</text>';
+    inner += '<text x="'+s/2+'" y="'+(s*.63)+'" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="'+(s*.22)+'" font-weight="300" font-family="Arial,sans-serif" letter-spacing="0.4">'+b.lines[1]+'</text>';
+  } else {
+    inner += '<text x="'+s/2+'" y="'+s/2+'" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="'+b.fs+'" font-weight="'+(b.fw||'700')+'" font-family="Arial,sans-serif">'+b.mark+'</text>';
+  }
+  return '<div class="bdc-av"><svg width="'+s+'" height="'+s+'" viewBox="0 0 '+s+' '+s+'" xmlns="http://www.w3.org/2000/svg">'+inner+'</svg></div>';
+}
+
+function renderCard(b) {
+  return '<a href="'+b.url+'" target="_blank" class="bdc" data-name="'+b.name.toLowerCase()+'">'
+    + makeLogo(b, 40)
+    + '<div class="bdc-name">'+b.name+'</div>'
+    + '<div class="bdc-country">'+b.country+'</div>'
+    + '<div class="bdc-cat">'+b.cat+'</div>'
+    + '<div class="bdc-link">홈페이지 →</div>'
+    + '</a>';
+}
+
+function render() {
+  ['na','eu','jp','kr'].forEach(function(r) {
+    document.getElementById('grid-'+r).innerHTML = BRANDS[r].map(renderCard).join('');
+  });
+}
+
+function filterRegion(region, btn) {
+  document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('on')});
+  btn.classList.add('on');
+  ['na','eu','jp','kr'].forEach(function(r) {
+    document.getElementById('sec-'+r).style.display = (region === 'all' || region === r) ? '' : 'none';
+  });
+}
+
+function filterBrands(q) {
+  var kw = q.toLowerCase().trim();
+  document.querySelectorAll('.bdc').forEach(function(el) {
+    el.style.display = (!kw || el.dataset.name.includes(kw)) ? '' : 'none';
+  });
+}
+
+render();
+</script>
