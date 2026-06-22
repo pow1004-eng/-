@@ -1,0 +1,1155 @@
+﻿<title>퍼시스 · 2026년 06월 신제품 리포트 (아카이브)</title>
+<style>
+:root{
+  --g:#FAFAF8; --w:#FFFFFF;
+  --t:#1C1917; --t2:#78716C; --t3:#A8A29E;
+  --a:#C17F3E; --ab:rgba(193,127,62,.09); --abr:rgba(193,127,62,.22);
+  --bd:#E8E4DF;
+  --sh:0 1px 3px rgba(28,25,23,.07),0 1px 2px rgba(28,25,23,.04);
+  --r:12px;
+  --na:#3B82F6; --eu:#10B981; --jp:#EF4444; --kr:#C17F3E;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:var(--g);color:var(--t);font-size:15px;line-height:1.5}
+
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* SIDEBAR */
+.sb{width:216px;flex-shrink:0;background:var(--w);border-right:1px solid var(--bd);display:flex;flex-direction:column;overflow-y:auto}
+.sb-logo{padding:16px 14px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--bd)}
+.sb-mark{width:28px;height:28px;background:var(--a);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.sb-name{font-size:15px;font-weight:700;letter-spacing:-.02em}
+.sb-sub{font-size:12px;color:var(--t3)}
+.sb-srch{padding:10px;border-bottom:1px solid var(--bd)}
+.sb-srch-in{display:flex;align-items:center;gap:7px;background:var(--g);border:1px solid var(--bd);border-radius:8px;padding:5px 9px}
+.sb-srch-ic{color:var(--t3);font-size:13px}
+.sb-srch input{border:none;background:none;outline:none;font-size:14px;color:var(--t);width:100%}
+.sb-srch input::placeholder{color:var(--t3)}
+.sb-nav{flex:1;padding:6px 8px}
+.sb-grp{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);padding:10px 8px 4px}
+.sbl{display:flex;align-items:center;gap:9px;padding:7px 9px 7px 12px;border-radius:8px;cursor:pointer;color:var(--t2);font-size:14px;font-weight:500;border:none;border-left:2.5px solid transparent;background:none;width:100%;text-align:left;transition:background .12s,color .12s}
+.sbl:hover{background:var(--g);color:var(--t)}
+.sbl.on{background:var(--ab);color:var(--a);border-left-color:var(--a);font-weight:600}
+.sbl-ic{width:15px;text-align:center;font-size:15px;flex-shrink:0}
+.sbl-cnt{margin-left:auto;background:var(--g);color:var(--t3);font-size:12px;font-weight:600;padding:1px 6px;border-radius:8px}
+.sbl.on .sbl-cnt{background:var(--ab);color:var(--a)}
+.sb-div{height:1px;background:var(--bd);margin:5px 4px}
+.sb-user{padding:12px 14px;border-top:1px solid var(--bd);display:flex;align-items:center;gap:9px;margin-top:auto}
+.sb-av{width:30px;height:30px;border-radius:50%;background:var(--a);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-uname{font-size:14px;font-weight:600;line-height:1.2}
+.sb-ubadge{font-size:12px;font-weight:600;background:var(--ab);color:var(--a);padding:1px 6px;border-radius:4px;display:inline-block;margin-top:2px}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.tb{background:var(--w);border-bottom:1px solid var(--bd);padding:11px 22px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-t{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.tb-s{font-size:13px;color:var(--t3);margin-top:1px}
+.tb-acts{display:flex;gap:7px}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:opacity .12s}
+.btn:hover{opacity:.82}
+.bp{background:var(--a);color:#fff}
+.bg{background:var(--g);color:var(--t2);border:1px solid var(--bd)}
+.bg.cp{background:#F0FDF4;color:#16A34A;border-color:#16A34A}
+
+/* SCROLL */
+.cnt{flex:1;overflow-y:auto;padding:18px 22px 32px;display:flex;flex-direction:column;gap:16px}
+
+/* KPI ROW */
+.krow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.kpi{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh)}
+.kpi-lbl{font-size:14px;font-weight:600;margin-bottom:9px}
+.kpi-val{font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:5px}
+.up{color:#10B981;font-size:19px;font-weight:600;margin-left:3px}
+.kpi-sub{font-size:13px;color:var(--t3)}
+.kpi-lnk{display:block;margin-top:13px;font-size:13px;color:var(--a);font-weight:600;background:none;border:none;cursor:pointer;padding:0;text-align:left}
+.kpi-lnk:hover{text-decoration:underline}
+.gauge-wrap{display:flex;justify-content:center;position:relative;margin:2px 0 2px}
+.gauge-lbl{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);font-size:24px;font-weight:700;letter-spacing:-.02em}
+
+/* LAYOUT GRIDS */
+.gmain{display:grid;grid-template-columns:1fr 260px;gap:12px}
+.gbot{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* CARD */
+.card{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.ch{padding:13px 16px 9px;display:flex;align-items:center;justify-content:space-between}
+.ct{font-size:15px;font-weight:700}
+.cc{font-size:13px;color:var(--t3);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:3px}
+.ca{font-size:13px;color:var(--a);font-weight:600;background:none;border:none;cursor:pointer;padding:0}
+
+/* PRODUCT LIST */
+.pi{display:flex;align-items:center;gap:11px;padding:10px 16px;border-top:1px solid #F4F2EF;cursor:pointer;transition:background .1s}
+.pi:hover{background:#FAFAF8}
+.pi.on{background:var(--ab)}
+.pav{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;letter-spacing:-.03em}
+.pinfo{flex:1;min-width:0}
+.pn{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pb{font-size:13px;color:var(--t3)}
+.pacts{display:flex;gap:3px;opacity:0;transition:opacity .12s;flex-shrink:0}
+.pi:hover .pacts,.pi.on .pacts{opacity:1}
+.ibtn{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--g);border:1px solid var(--bd);cursor:pointer;font-size:12px;color:var(--t2);text-decoration:none;transition:background .1s,color .1s}
+.ibtn:hover{background:var(--w);color:var(--a);border-color:var(--abr)}
+.bdg{font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+.bdg-a{background:#FEF3C7;color:#D97706}
+.bdg-n{background:#F0FDF4;color:#16A34A}
+.bdg-w{background:#FEF2F2;color:#DC2626}
+.bdg-b{background:#EFF6FF;color:#2563EB}
+.p-all{padding:10px 16px;border-top:1px solid #F4F2EF}
+.p-all a{font-size:13px;color:var(--a);font-weight:600;text-decoration:none}
+
+/* REGION STATS */
+.rs{padding:9px 16px;border-top:1px solid #F4F2EF}
+.rst{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.rsn{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.rsd{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.rsc{font-size:13px;font-weight:600}
+.rsb{height:6px;background:#F0EDE9;border-radius:3px;overflow:hidden}
+.rsf{height:100%;border-radius:3px}
+
+/* MINI CARDS */
+.mini{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:13px 16px;box-shadow:var(--sh)}
+.ml{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);margin-bottom:3px}
+.mv{font-size:21px;font-weight:700;letter-spacing:-.02em;color:var(--a);line-height:1.2}
+.ms{font-size:13px;color:var(--t3);margin-top:2px}
+
+/* ── REGION SECTIONS ── */
+.reg-sec{display:flex;flex-direction:column;gap:10px}
+.reg-hd{display:flex;align-items:center;gap:10px;padding:0 2px}
+.reg-hd-bar{width:3px;height:18px;border-radius:2px;flex-shrink:0}
+.reg-hd-name{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.reg-hd-count{font-size:13px;color:var(--t3);font-weight:500}
+.reg-hd-line{flex:1;height:1px;background:var(--bd)}
+
+.reg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+
+/* BRAND CARD */
+.bc{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);box-shadow:var(--sh);display:flex;flex-direction:column;transition:box-shadow .15s,border-color .15s}
+.bc:hover{box-shadow:0 4px 14px rgba(28,25,23,.09);border-color:#D8D3CC}
+.bc-top{display:flex;align-items:flex-start;gap:10px;padding:14px 14px 10px}
+.bc-av{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;letter-spacing:-.02em;overflow:hidden;padding:0}
+.bc-head{flex:1;min-width:0}
+.bc-brand{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bc-country{font-size:12px;color:var(--t3)}
+.bc-badges{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.bc-body{padding:0 14px 10px;flex:1}
+.bc-prod{font-size:14px;font-weight:600;color:var(--t);margin-bottom:5px;line-height:1.3}
+.bc-desc{font-size:13px;color:var(--t2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bc-foot{padding:9px 14px;border-top:1px solid #F4F2EF;display:flex;align-items:center;justify-content:space-between}
+.bc-tag{font-size:12px;font-weight:600;color:var(--t3)}
+.bc-lnk{font-size:12px;font-weight:600;color:var(--a);text-decoration:none;display:flex;align-items:center;gap:3px}
+.bc-lnk:hover{text-decoration:underline}
+
+/* TRENDS */
+.ti{display:flex;gap:11px;padding:10px 16px;border-top:1px solid #F4F2EF}
+.tnum{width:19px;height:19px;border-radius:5px;background:var(--ab);color:var(--a);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.tt{font-size:14px;font-weight:600;margin-bottom:2px}
+.td{font-size:13px;color:var(--t3);line-height:1.5}
+
+/* NEW TAGS */
+.ntags{padding:7px 16px 14px;display:flex;flex-wrap:wrap;gap:6px}
+.ntag{display:inline-flex;align-items:center;gap:4px;background:var(--g);border:1px solid var(--bd);border-radius:14px;padding:4px 9px;font-size:13px;font-weight:600;color:var(--t2);cursor:pointer;transition:all .12s}
+.ntag:hover{background:var(--ab);border-color:var(--abr);color:var(--a)}
+.np{color:var(--a);font-size:14px;line-height:1}
+
+/* SHARE BAR */
+.sbar{background:var(--w);border-top:1px solid var(--bd);padding:8px 22px;display:flex;justify-content:flex-end;gap:7px;flex-shrink:0}
+
+/* INSIGHTS */
+.ins-item{display:flex;align-items:flex-start;gap:12px;padding:11px 16px;border-top:1px solid #F4F2EF}
+.ins-pri{font-size:11px;font-weight:700;padding:3px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;flex-shrink:0;letter-spacing:.04em}
+.ins-r{background:#FEF2F2;color:#DC2626}
+.ins-a{background:#FEF3C7;color:#D97706}
+.ins-b{background:#EFF6FF;color:#2563EB}
+.ins-title{font-size:14px;font-weight:600;margin-bottom:3px;line-height:1.3}
+.ins-desc{font-size:13px;color:var(--t2);line-height:1.6}
+.pi[onclick]{cursor:pointer}
+.pi[onclick]:hover .pn{color:var(--a)}
+.bc.hl{border-color:var(--a);box-shadow:0 0 0 2px var(--ab),var(--sh);transition:border-color .15s,box-shadow .15s}
+@media print{.sb,.tb,.sbar{display:none}.main{overflow:visible}.cnt{overflow:visible;padding:12px}.gmain,.gbot,.reg-grid{grid-template-columns:1fr}.krow{grid-template-columns:repeat(3,1fr)}}
+@media(prefers-reduced-motion:reduce){*{transition:none !important}}
+
+/* BRAND DIRECTORY VIEW */
+.bdc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.bdc{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:7px;text-decoration:none;color:inherit;box-shadow:var(--sh);transition:box-shadow .15s,border-color .15s;text-align:center}
+.bdc:hover{box-shadow:0 4px 14px rgba(28,25,23,.09);border-color:#D8D3CC}
+.bdc-av2{width:40px;height:40px;border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.bdc-name{font-size:13px;font-weight:700;line-height:1.3;color:var(--t)}
+.bdc-ctr{font-size:11px;color:var(--t3)}
+.bdc-cat{font-size:11px;color:var(--t2);line-height:1.4;margin-top:1px}
+.bdc-url{font-size:11px;font-weight:700;color:var(--a);margin-top:4px}
+.bdc:hover .bdc-url{text-decoration:underline}
+.bfilt{display:flex;gap:7px;flex-wrap:wrap}
+.bfbtn{padding:5px 14px;border-radius:20px;border:1px solid var(--bd);background:var(--w);color:var(--t2);font-size:12px;font-weight:600;cursor:pointer;transition:all .12s}
+.bfbtn:hover,.bfbtn.on{background:var(--ab);color:var(--a);border-color:var(--abr)}
+
+/* Archive banner */
+.arch-bar{background:#FEF3C7;border-bottom:2px solid #FCD34D;padding:8px 22px;
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;font-size:13px}
+.arch-bar b{color:#D97706;font-weight:700}
+.arch-bar a{color:#D97706;font-weight:700;text-decoration:none}
+.arch-bar a:hover{text-decoration:underline}</style>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<aside class="sb">
+  <div class="sb-logo">
+    <div>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAAAlCAYAAAA9UhmxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP0SURBVHhe7Zs9duIwEMcnWyUhZ0BlsuQKa5UBzoBpgSusSRfgDEAZzBlIysi5QvJSIp9h923pLfiy9RF/yWAn83tPBbLeSMJ/a0Ya+ywIggAQpAL8ECsQpKygWJHKgGJFKgOKFakMKFakMmjFelG7KrQsXHffV7Pdlq432+3IeJISZ4t5nnQ9S2m229Bst2HhusA5j4xBRa8/gJvGrWQnTxmNJ3v7o/FEun7TuI2MISlJbXHOodcfSG3zlrA2wmjFinwOYx4w5kGvP4DeYKAVLOd8fwN0baoI8zy4adxqhVUEKFYDMLa5cczzxEvQGwzEqi9Br3/8eaFYDdLrR1dYzjkwJgu46jDPO4mXQLEahHMOC3d5+O37ketfhVMIFdKKdT6bwr+/f4yUrm2L5k/K89NKGuNnZT6bAiFENAPea/xK+vH+JtnLUu6Hjmj6pIjjy1p02kglVuRA17bB7nTEamDsNC7yO4BizQEhdbEKAEC54iL5QbHmwF0e4tMdKNTiONO9InhRuxKroGvbUK+rV5O0UGoBtSyA7UG+uGum1ILn1SpSl4Q4W8zzoNmSEw5p5ub7vnZHnKSvoZM91qTUAlKvSw/FaDyB8eSQJIDtg6MKVeLwXjdnyGEIIfDx/gYAAAvXVR5d5ZkXIXVtrLojlVhNMp9N94OLE1ga4mzpBGSK8LyK7CvcD2jEapKwWIua1+7h0m0cMQwwSNe2IwKiliWtgKbo9QeR7BGlGy91DEhCD5QWzjm4y6UyuQIoVnNQasF8NhWrM7nhpIRjZmpZsW7UFISQXC7/MzjnWg+BYjUE574yhr0fOjB0nEJWWPGYbOj8LkxEIl27U1hfnKuTKaliVkotsH6ZcTddu7O/gXFxZhribOnirTQbLO/V04rz4/1NKcydaxPHlhTf95Uvjaj645xvN4Dqmx5H3AYrTBF9wTbBIBFoOL+sSeVxsRCbGeGu1ZL6umu1xGaJiLP1wph0/fyyFrwwFrETx3q9Dq5/NiQ7D6Ox2NQIunGv12uxaW4eRmOpn+ufDbGZER4XC6mv88ua2CwIgiDAMCAjhJD90VuYJOlWJBso1hyowoas7hCJB8WKVIbSipWxbJ+fqIJ1Upc3PMfC1Gcfqk2hiKnPZnRHR2FUnw9lKapMmI5SiNXUCcN3gxAinQQUhSo+LwpdgqMUYu3axR2cAwDYBds/Fbq3vorgmP+hbvEqhViLzIgMHeeoq8KxIIRkOofOQvilo6Kh1Cr/uwH3Qween1ZaF5AGQsgmEfC00k68qhBCoGvbygN6k+xCjKHjHOWhSNKXNoOFIGWjNCsrgsSBYkUqA4oVqQwoVqQyoFiRyoBiRSrDf3mTgsrkd3bMAAAAAElFTkSuQmCC" style="height:20px;display:block;mix-blend-mode:multiply" alt="FURSYS">
+      <div class="sb-sub">신제품 인텔리전스</div>
+    </div>
+  </div>
+  <div class="sb-srch">
+    <div class="sb-srch-in">
+      <span class="sb-srch-ic">🔍</span>
+      <input type="text" placeholder="브랜드, 제품 검색…" />
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <button class="sbl on" id="nav-dash" onclick="showView('dash')"><span class="sbl-ic">⊞</span>대시보드</button>
+    <button class="sbl" id="nav-brands" onclick="showView('brands')"><span class="sbl-ic">◎</span>브랜드<span class="sbl-cnt">40</span></button>
+    <button class="sbl"><span class="sbl-ic">↗</span>전체 리포트</button>
+    <div class="sb-grp">지역별</div>
+    <button class="sbl" onclick="sc('na-sec')"><span class="sbl-ic" style="color:var(--na)">●</span>북미<span class="sbl-cnt">10</span></button>
+    <button class="sbl" onclick="sc('eu-sec')"><span class="sbl-ic" style="color:var(--eu)">●</span>유럽<span class="sbl-cnt">7</span></button>
+    <button class="sbl" onclick="sc('jp-sec')"><span class="sbl-ic" style="color:var(--jp)">●</span>일본<span class="sbl-cnt">6</span></button>
+    <button class="sbl" onclick="sc('kr-sec')"><span class="sbl-ic" style="color:var(--kr)">●</span>국내<span class="sbl-cnt">4</span></button>
+    <div class="sb-div"></div>
+    <button class="sbl" onclick="sc('trends-sec')"><span class="sbl-ic">↻</span>트렌드 분석</button>
+    <button class="sbl" onclick="sc('insights-sec')"><span class="sbl-ic">📌</span>퍼시스 시사점<span class="sbl-cnt">5</span></button>
+    <button class="sbl" onclick="window.print()"><span class="sbl-ic">↓</span>내보내기</button>
+  </nav>
+  <div class="sb-user">
+    <div class="sb-av">성근</div>
+    <div>
+      <div class="sb-uname">성근</div>
+      <div class="sb-ubadge">개발팀</div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="tb">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div>
+        <div class="tb-t">글로벌 신제품 리포트</div>
+        <div class="tb-s">2026년 6월 수집 · 4개 지역 40개 브랜드 모니터링</div>
+      </div>
+      <span style="font-size:12px;font-weight:700;background:#FEF3C7;color:#D97706;padding:3px 11px;border-radius:20px;white-space:nowrap;flex-shrink:0">2026년 6월</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a href="../archive.html" style="display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:8px;font-size:13px;font-weight:600;background:var(--g);color:var(--t2);border:1px solid var(--bd);text-decoration:none;transition:opacity .12s">📁 월별 아카이브</a>
+      <button class="btn bg" id="cb" onclick="cl()">🔗 링크 복사</button>
+      <button class="btn bp" onclick="window.print()">⬇ PDF 저장</button>
+    </div>
+  </div>
+
+  
+  <div class="arch-bar"><b>📦 2026년 06월 아카이브 — 읽기 전용</b><a href="../index.html">최신 리포트 보기 →</a></div>
+  <div class="cnt" id="view-dash">
+
+    <!-- KPI ROW -->
+    <div class="krow">
+      <div class="kpi">
+        <div class="kpi-lbl">신제품 수</div>
+        <div class="kpi-val">30<span style="font-size:19px">+</span><span class="up">↗</span></div>
+        <div class="kpi-sub">4개 지역 · 20개 브랜드 신규 출시</div>
+        <button class="kpi-lnk" onclick="sc('na-sec')">지역별 상세 보기 →</button>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">수상 제품</div>
+        <div class="kpi-val">2</div>
+        <div class="kpi-sub">Red Dot 2026 · NeoCon 2026 수상</div>
+        <button class="kpi-lnk" onclick="sc('jp-sec')">수상 제품 보기 →</button>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">리포트 완성도</div>
+        <div class="gauge-wrap">
+          <canvas id="gc" width="130" height="74"></canvas>
+          <div class="gauge-lbl">85%</div>
+        </div>
+        <div class="kpi-sub" style="text-align:center">40개 브랜드 중 17개 업데이트 완료</div>
+        <button class="kpi-lnk" style="text-align:center;display:block">전체 현황 보기 →</button>
+      </div>
+    </div>
+
+    <!-- MAIN GRID: featured list + right panel -->
+    <div class="gmain">
+      <div class="card">
+        <div class="ch">
+          <span class="ct">주목 신제품 Top 9</span>
+          <button class="cc">최신순 ▾</button>
+        </div>
+
+        <div class="pi on" onclick="pClick(event,'bc-ko')">
+          <div class="pav" style="background:var(--jp)">KO</div>
+          <div class="pinfo"><div class="pn">ingCloud</div><div class="pb">Kokuyo · 일본 · 2026.06</div></div>
+          <span class="bdg bdg-a">Red Dot 2026</span>
+          <div class="pacts"><span class="ibtn">☆</span><span class="ibtn">✎</span><a class="ibtn" href="https://www.kokuyo.com/en/insights/20260610.html" target="_blank">↗</a></div>
+        </div>
+        <div class="pi" onclick="pClick(event,'bc-hm')">
+          <div class="pav" style="background:var(--na)">HM</div>
+          <div class="pinfo"><div class="pn">Aeron Chair in Color</div><div class="pb">Herman Miller · 북미 · 2026.06</div></div>
+          <span class="bdg bdg-n">신규</span>
+          <div class="pacts"><span class="ibtn">☆</span><span class="ibtn">✎</span><a class="ibtn" href="https://news.millerknoll.com/2026-06-02-Herman-Miller-introduces-Aeron-Chair-in-color-and-advances-its-sustainable-and-inclusive-design" target="_blank">↗</a></div>
+        </div>
+        <div class="pi" onclick="pClick(event,'bc-ok')">
+          <div class="pav" style="background:var(--jp)">OK</div>
+          <div class="pinfo"><div class="pn">MUKU Task Chair</div><div class="pb">Okamura · 일본 · 2026.06</div></div>
+          <span class="bdg bdg-a">NeoCon 2026</span>
+          <div class="pacts"><span class="ibtn">☆</span><span class="ibtn">✎</span><a class="ibtn" href="https://www.coffeefranchisehub.com/archives/50709" target="_blank">↗</a></div>
+        </div>
+        <div class="pi" onclick="pClick(event,'bc-vi')">
+          <div class="pav" style="background:var(--eu)">VI</div>
+          <div class="pinfo"><div class="pn">Mynt Task Chair</div><div class="pb">Vitra · 유럽 · 2026.05</div></div>
+          <div class="pacts"><span class="ibtn">☆</span><span class="ibtn">✎</span><a class="ibtn" href="https://metropolismag.com/products/vitra-new-collections-bouroullec-brothers/" target="_blank">↗</a></div>
+        </div>
+        <div class="pi" onclick="pClick(event,'bc-kn')">
+          <div class="pav" style="background:var(--na)">KN</div>
+          <div class="pinfo"><div class="pn">Konzert Private Office</div><div class="pb">Knoll · 북미 · 2026.06</div></div>
+          <div class="pacts"><span class="ibtn">☆</span><span class="ibtn">✎</span><a class="ibtn" href="https://www.prnewswire.com/news-releases/knoll-debuts-konzert-a-private-office-system-where-precision-meets-possibility-302775524.html" target="_blank">↗</a></div>
+        </div>
+        <div class="pi" onclick="pClick(event,'bc-hs')">
+          <div class="pav" style="background:var(--kr);font-size:11px">한샘</div>
+          <div class="pinfo"><div class="pn">이머전 오피스 시리즈</div><div class="pb">한샘 · 국내 · 2026.04</div></div>
+          <span class="bdg bdg-w">첫 진출</span>
+          <div class="pacts"><span class="ibtn">☆</span><span class="ibtn">✎</span><a class="ibtn" href="https://www.newsis.com/view/NISX20260402_0003575553" target="_blank">↗</a></div>
+        </div>
+        <div class="pi" onclick="pClick(event,'bc-it')">
+          <div class="pav" style="background:var(--jp)">IT</div>
+          <div class="pinfo"><div class="pn">SHIGA Work Chair</div><div class="pb">Itoki · 일본 · 2025.11</div></div>
+          <div class="pacts"><span class="ibtn">☆</span><span class="ibtn">✎</span><a class="ibtn" href="https://www.itoki.jp/en/company/news/2025/2511_shiga/" target="_blank">↗</a></div>
+        </div>
+        <div class="pi" onclick="pClick(event,'bc-sc')">
+          <div class="pav" style="background:var(--na)">SC</div>
+          <div class="pinfo"><div class="pn">Jean Nouvel Collection</div><div class="pb">Steelcase · 북미 · 2026.06</div></div>
+          <div class="pacts"><span class="ibtn">☆</span><span class="ibtn">✎</span><a class="ibtn" href="https://www.coalesse.com/products/seating/lounge-seating/jean-nouvel-seating-collection/" target="_blank">↗</a></div>
+        </div>
+        <div class="pi" onclick="pClick(event,'bc-fl')">
+          <div class="pav" style="background:var(--eu)">FL</div>
+          <div class="pinfo"><div class="pn">HÅG Tion Mesh</div><div class="pb">Flokk · 유럽 · 2026.03</div></div>
+          <div class="pacts"><span class="ibtn">☆</span><span class="ibtn">✎</span><a class="ibtn" href="https://focus.flokk.com/h%C3%A5g-tion-mesh-now-available" target="_blank">↗</a></div>
+        </div>
+        <div class="p-all"><a href="#" onclick="sc('na-sec');return false;">지역별 전체 신제품 보기 →</a></div>
+      </div>
+
+      <!-- Right column -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card">
+          <div class="ch">
+            <span class="ct">지역별 신제품 현황</span>
+            <button class="cc">이번 달 ▾</button>
+          </div>
+          <div class="rs">
+            <div class="rst"><span class="rsn"><span class="rsd" style="background:var(--na)"></span>북미</span><span class="rsc">10개</span></div>
+            <div class="rsb"><div class="rsf" style="width:100%;background:var(--na)"></div></div>
+          </div>
+          <div class="rs">
+            <div class="rst"><span class="rsn"><span class="rsd" style="background:var(--eu)"></span>유럽</span><span class="rsc">7개</span></div>
+            <div class="rsb"><div class="rsf" style="width:70%;background:var(--eu)"></div></div>
+          </div>
+          <div class="rs">
+            <div class="rst"><span class="rsn"><span class="rsd" style="background:var(--jp)"></span>일본</span><span class="rsc">6개</span></div>
+            <div class="rsb"><div class="rsf" style="width:60%;background:var(--jp)"></div></div>
+          </div>
+          <div class="rs">
+            <div class="rst"><span class="rsn"><span class="rsd" style="background:var(--kr)"></span>국내</span><span class="rsc">4개</span></div>
+            <div class="rsb"><div class="rsf" style="width:40%;background:var(--kr)"></div></div>
+          </div>
+        </div>
+        <div class="mini">
+          <div class="ml">이달의 수상</div>
+          <div class="mv">Red Dot</div>
+          <div class="ms">Kokuyo ingCloud · Best of the Best 2026</div>
+        </div>
+        <div class="mini">
+          <div class="ml">최다 출시 지역</div>
+          <div class="mv">북미</div>
+          <div class="ms">10개 신제품 · 5개 브랜드 업데이트</div>
+        </div>
+        <div class="mini">
+          <div class="ml">주목 이슈</div>
+          <div class="mv" style="font-size:15px;line-height:1.3">한샘 오피스 첫 진출</div>
+          <div class="ms">이머전 시리즈 · B2C→B2B 확장 주의</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ 북미 ═══════════════════ -->
+    <div id="na-sec" class="reg-sec">
+      <div class="reg-hd">
+        <div class="reg-hd-bar" style="background:var(--na)"></div>
+        <span class="reg-hd-name">북미 North America</span>
+        <span class="reg-hd-count">신제품 10개 · 6개 브랜드</span>
+        <div class="reg-hd-line"></div>
+      </div>
+      <div class="reg-grid">
+
+        <div class="bc" id="bc-hm">
+          <div class="bc-top">
+            <div class="bc-av" style="background:var(--na)">HM</div>
+            <div class="bc-head">
+              <div class="bc-brand">Herman Miller</div>
+              <div class="bc-country">미국 · 2026.06</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Aeron Chair in Color</div>
+            <div class="bc-desc">30년 역사의 Aeron에 24가지 컬러 옵션 추가. 재활용 알루미늄 베이스와 생분해 소재 사용으로 지속가능성 강화. 기존 인체공학 구조 유지하며 개성 표현 옵션 확대.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">컬러·지속가능성</span>
+            <a class="bc-lnk" href="https://news.millerknoll.com/2026-06-02-Herman-Miller-introduces-Aeron-Chair-in-color-and-advances-its-sustainable-and-inclusive-design" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc" id="bc-sc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#1D4ED8">SC</div>
+            <div class="bc-head">
+              <div class="bc-brand">Steelcase</div>
+              <div class="bc-country">미국 · 2026.06</div>
+              <div class="bc-badges"><span class="bdg bdg-b">NeoCon 출품</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Jean Nouvel Collection (Coalesse)</div>
+            <div class="bc-desc">건축가 Jean Nouvel과 협업한 프리미엄 라운지 시리즈. 조각적인 실루엣과 섬세한 소재 대비가 특징. 임원·리셉션 공간 타겟. Coalesse 브랜드를 통한 초프리미엄 포지셔닝.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">프리미엄·협업디자인</span>
+            <a class="bc-lnk" href="https://www.coalesse.com/products/seating/lounge-seating/jean-nouvel-seating-collection/" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc" id="bc-kn">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#7C3AED">KN</div>
+            <div class="bc-head">
+              <div class="bc-brand">Knoll</div>
+              <div class="bc-country">미국 · 2026.06</div>
+              <div class="bc-badges"><span class="bdg bdg-b">NeoCon 출품</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Konzert Private Office System</div>
+            <div class="bc-desc">파티션·조명·수납을 하나로 통합한 집중업무 공간 시스템. Paolo Dell'Elce 디자인. 유리·직물·목재 조합으로 음향 차단과 시각적 개방감 동시 구현. 공간 효율 극대화.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">통합 공간솔루션</span>
+            <a class="bc-lnk" href="https://www.prnewswire.com/news-releases/knoll-debuts-konzert-a-private-office-system-where-precision-meets-possibility-302775524.html" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#059669">HW</div>
+            <div class="bc-head">
+              <div class="bc-brand">Haworth</div>
+              <div class="bc-country">미국 · 2026.05</div>
+              <div class="bc-badges"><span class="bdg bdg-n">2종 출시</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Fern Chair + Halo Gaming Edition</div>
+            <div class="bc-desc">Fern의 자동 감응형 등받이(무조작 자세 추적)를 계승한 업그레이드. 별도로 게이밍·홈오피스 겨냥한 Halo Edition 출시로 MZ 소비자 채널 진입. B2B·B2C 투트랙 전략.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">인체공학·게이밍확장</span>
+            <a class="bc-lnk" href="https://store.haworth.com/pages/halo-legendary" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#DC2626">HS</div>
+            <div class="bc-head">
+              <div class="bc-brand">Humanscale</div>
+              <div class="bc-country">미국 · 2026.04</div>
+              <div class="bc-badges"><span class="bdg bdg-n">4세대</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">eFloat Quattro 전동 승강 데스크</div>
+            <div class="bc-desc">4세대 전동 승강 시스템. AI 기반 사용자 자세 기억·자동 복원 기능 탑재. 탄소 네거티브 인증 소재 사용. 5년 높이 보정 보증. 기업 대량 구매 시 IoT 통합 관리 지원.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">AI·전동승강·친환경</span>
+            <a class="bc-lnk" href="https://www.humanscale.com/products/product.cfm?group=efloat" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#92400E">HN</div>
+            <div class="bc-head">
+              <div class="bc-brand">HON</div>
+              <div class="bc-country">미국 · 2026.03</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Hello Office Lounge Series</div>
+            <div class="bc-desc">하이브리드 워크 전환에 맞춘 다목적 라운지 시리즈. 소파·체어·파티션·사이드 테이블 모듈 조합 가능. 중가 시장 타겟으로 대기업 대량 납품 경쟁력 강화. 납기 8주 이내.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">하이브리드·중가시장</span>
+            <a class="bc-lnk" href="https://www.hon.com/chairs/lounge-chairs" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════ 유럽 ═══════════════════ -->
+    <div id="eu-sec" class="reg-sec">
+      <div class="reg-hd">
+        <div class="reg-hd-bar" style="background:var(--eu)"></div>
+        <span class="reg-hd-name">유럽 Europe</span>
+        <span class="reg-hd-count">신제품 7개 · 6개 브랜드</span>
+        <div class="reg-hd-line"></div>
+      </div>
+      <div class="reg-grid">
+
+        <div class="bc" id="bc-vi">
+          <div class="bc-top">
+            <div class="bc-av" style="background:var(--eu)">VI</div>
+            <div class="bc-head">
+              <div class="bc-brand">Vitra</div>
+              <div class="bc-country">스위스 · 2026.05</div>
+              <div class="bc-badges"><span class="bdg bdg-b">Salone 출품</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Mynt Task Chair</div>
+            <div class="bc-desc">Ronan & Erwan Bouroullec 형제 디자인. 체중 감지 자동 지지 메커니즘으로 조작 제로 인체공학 실현. V Foam(재활용 소재) 쿠션 적용. 8가지 컬러·소재 조합 제공.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">자동인체공학·재활용</span>
+            <a class="bc-lnk" href="https://metropolismag.com/products/vitra-new-collections-bouroullec-brothers/" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc" id="bc-fl">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#065F46">FL</div>
+            <div class="bc-head">
+              <div class="bc-brand">Flokk (HÅG)</div>
+              <div class="bc-country">노르웨이 · 2026.03</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">HÅG Tion Mesh</div>
+            <div class="bc-desc">베이스 97% 재활용 알루미늄 사용. HÅG 고유의 '발란스 시팅(balance sitting)' 철학 계승—앞으로 앉기·뒤로 기대기 모두 지원하는 독립 조절 메커니즘. 노르웨이 친환경 인증.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">재활용·발란스시팅</span>
+            <a class="bc-lnk" href="https://focus.flokk.com/h%C3%A5g-tion-mesh-now-available" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#1E40AF">KN</div>
+            <div class="bc-head">
+              <div class="bc-brand">Kinnarps</div>
+              <div class="bc-country">스웨덴 · 2026.04</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Spout Table</div>
+            <div class="bc-desc">FSC 인증 스웨덴 소나무 상판 + 전동 승강 프레임 결합. 수동 조작 없이 앱으로 높이 프리셋 저장. 친환경 마감재로 EU 에코라벨 취득. 공유 워크스테이션 최적화.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">전동승강·친환경목재</span>
+            <a class="bc-lnk" href="https://www.kinnarps.com/products/tables/desk-and-bench/" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#6D28D9">WH</div>
+            <div class="bc-head">
+              <div class="bc-brand">Wilkhahn</div>
+              <div class="bc-country">독일 · 2026.05</div>
+              <div class="bc-badges"><span class="bdg bdg-b">Orgatec 출품</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">CYNARA Conference Chair</div>
+            <div class="bc-desc">회의용 의자의 시각적 무거움을 해소한 슬림 디자인. 연결 없이도 링크 가능한 모듈형 구조. 자동 수납 팔걸이. 독일 블루엔젤 인증. 대형 회의실·강의실 납품 타겟.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">회의·모듈·친환경인증</span>
+            <a class="bc-lnk" href="https://www.dezeen.com/2026/05/26/wichair-alina-schnizler-wilkhahn-dezeen-showroom/" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#0891B2">HY</div>
+            <div class="bc-head">
+              <div class="bc-brand">Hay</div>
+              <div class="bc-country">덴마크 · 2026.01</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">World Upholstered Chair</div>
+            <div class="bc-desc">Hay의 베스트셀러 World Chair에 업홀스터 버전 추가. 35가지 패브릭 옵션. 오피스·라운지 겸용. 스칸디나비아 모던 디자인 철학 유지하며 컨트랙트 시장 확대. 중저가 포지셔닝.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">업홀스터·컨트랙트</span>
+            <a class="bc-lnk" href="https://hay.com/en-us/products/chairs/office-chairs" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#374151">SD</div>
+            <div class="bc-head">
+              <div class="bc-brand">Sedus</div>
+              <div class="bc-country">독일 · 2026.02</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Insit Task Chair</div>
+            <div class="bc-desc">능동형 허리 지지 자동화 메커니즘 탑재. 사용자가 등받이 기울기를 조작할 필요 없이 앉은 자세에 따라 지지력 자동 조절. 독일 산업디자인상(iF) 수상. BIFMA 인증.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">능동지지·자동조절</span>
+            <a class="bc-lnk" href="https://www.sedus.com/en/products/chairs/" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════ 일본 ═══════════════════ -->
+    <div id="jp-sec" class="reg-sec">
+      <div class="reg-hd">
+        <div class="reg-hd-bar" style="background:var(--jp)"></div>
+        <span class="reg-hd-name">일본 Japan</span>
+        <span class="reg-hd-count">신제품 6개 · 6개 브랜드</span>
+        <div class="reg-hd-line"></div>
+      </div>
+      <div class="reg-grid">
+
+        <div class="bc" id="bc-ko">
+          <div class="bc-top">
+            <div class="bc-av" style="background:var(--jp)">KO</div>
+            <div class="bc-head">
+              <div class="bc-brand">Kokuyo</div>
+              <div class="bc-country">일본 · 2026.06</div>
+              <div class="bc-badges"><span class="bdg bdg-a">Red Dot Best of Best</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">ingCloud</div>
+            <div class="bc-desc">Red Dot 2026 최고상 수상. 클라우드 연동 스마트 오피스 생태계 통합 플랫폼. IoT 센서로 공간 사용 데이터 수집·분석. 팀 협업 패턴에 따라 좌석 배치 AI 추천. 일본 OEM 및 수출 확대 예정.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">IoT·AI·공간분석</span>
+            <a class="bc-lnk" href="https://www.kokuyo.com/en/insights/20260610.html" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc" id="bc-ok">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#B91C1C">OK</div>
+            <div class="bc-head">
+              <div class="bc-brand">Okamura</div>
+              <div class="bc-country">일본 · 2026.06</div>
+              <div class="bc-badges"><span class="bdg bdg-a">NeoCon 2026 수상</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">MUKU Task Chair</div>
+            <div class="bc-desc">Foster+Partners(런던) 협업 디자인. '목재처럼 자연스러운' 유기적 형태. 폐어망 재활용 메쉬 등판 적용. NeoCon 최우수상 수상으로 글로벌 주목. 천연 소재×하이테크 인체공학의 결합.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">협업·재활용·수상</span>
+            <a class="bc-lnk" href="https://www.coffeefranchisehub.com/archives/50709" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc" id="bc-it">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#9D174D">IT</div>
+            <div class="bc-head">
+              <div class="bc-brand">Itoki</div>
+              <div class="bc-country">일본 · 2025.11</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">SHIGA Work Chair</div>
+            <div class="bc-desc">다중 작업 자세(집중·회의·통화·라운징) 대응 멀티포지션 리클라이닝 체어. 등받이 각도·깊이·팔걸이 모두 원터치 조작. BIFMA e3 친환경 인증. 일본 국내 대기업 대량 납품 기록.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">멀티포지션·기업납품</span>
+            <a class="bc-lnk" href="https://www.itoki.jp/en/company/news/2025/2511_shiga/" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#92400E">PL</div>
+            <div class="bc-head">
+              <div class="bc-brand">Plus Corporation</div>
+              <div class="bc-country">일본 · 2025.10</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Madomino 파티션+퍼치</div>
+            <div class="bc-desc">파티션과 퍼치(perch) 시팅을 결합한 복합 모듈. 독립형·연결형 모두 가능. 파티션 상단에 간이 선반·화분·디스플레이 거치 옵션 추가. 집중과 협업 공간을 빠르게 전환 가능.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">복합모듈·공간전환</span>
+            <a class="bc-lnk" href="https://www.plus.co.jp/en/products/furniture/" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#78350F">KR</div>
+            <div class="bc-head">
+              <div class="bc-brand">Karimoku</div>
+              <div class="bc-country">일본 · 2026.04</div>
+              <div class="bc-badges"><span class="bdg bdg-b">목공 장인</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">NEW STANDARD Oak Office Series</div>
+            <div class="bc-desc">70년 목공 전통 × 현대 오피스 니즈 결합. 수작업 오크 상판 + 금속 프레임의 내구성 조화. 재택·소형 사무소 타겟으로 주거형 감성 오피스 시장 공략. 수출형 프리미엄 라인 강화.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">목공전통·프리미엄</span>
+            <a class="bc-lnk" href="https://www.karimoku-research.com/" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#1E3A5F">MR</div>
+            <div class="bc-head">
+              <div class="bc-brand">Maruni</div>
+              <div class="bc-country">일본 · 2025.12</div>
+              <div class="bc-badges"><span class="bdg bdg-n">오피스 첫 진출</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Hiroshima Armchair Office Edition</div>
+            <div class="bc-desc">가정용 Hiroshima 체어의 오피스 버전. 5성 캐스터·높이 조절 추가. 목재 특유의 따뜻한 질감으로 고급 경영진 집무실 타겟. 컨트랙트 시장 첫 진출로 Maruni의 B2B 전략 가속화.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">목재·임원실·B2B진출</span>
+            <a class="bc-lnk" href="https://www.maruni.com/en/product/concept/hiroshima/" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════ 국내 ═══════════════════ -->
+    <div id="kr-sec" class="reg-sec">
+      <div class="reg-hd">
+        <div class="reg-hd-bar" style="background:var(--kr)"></div>
+        <span class="reg-hd-name">국내 Korea</span>
+        <span class="reg-hd-count">신제품 4개 · 4개 브랜드</span>
+        <div class="reg-hd-line"></div>
+      </div>
+      <div class="reg-grid">
+
+        <div class="bc" id="bc-hs">
+          <div class="bc-top">
+            <div class="bc-av" style="background:var(--kr)">한샘</div>
+            <div class="bc-head">
+              <div class="bc-brand">한샘</div>
+              <div class="bc-country">한국 · 2026.04</div>
+              <div class="bc-badges"><span class="bdg bdg-w">오피스 첫 진출</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">이머전(Imersion) 오피스 시리즈</div>
+            <div class="bc-desc">B2C 인테리어 1위 한샘의 B2B 오피스 시장 첫 진출. 책상·의자·수납 패키지 구성. 주거형 감성을 오피스에 이식한 '홈리크 오피스' 컨셉. 중소기업·스타트업 타겟 합리적 가격대.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">홈리크오피스·B2B진출</span>
+            <a class="bc-lnk" href="https://www.newsis.com/view/NISX20260402_0003575553" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#0F766E">시디즈</div>
+            <div class="bc-head">
+              <div class="bc-brand">시디즈</div>
+              <div class="bc-country">한국 · 2026.03</div>
+              <div class="bc-badges"><span class="bdg bdg-n">리뉴얼</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">GX 게이밍·홈오피스 체어 리뉴얼</div>
+            <div class="bc-desc">시디즈의 인체공학 기술을 게이밍·홈오피스 겸용으로 재편. 장시간 착석 쾌적성 강조, 요추 지지 자동 조절. MZ세대 컬러 감성. 쿠팡·네이버 채널 확대로 D2C 매출 증대 전략.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">게이밍·홈오피스·D2C</span>
+            <a class="bc-lnk" href="https://www.sidiz.com" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#1D4ED8">현대리바트</div>
+            <div class="bc-head">
+              <div class="bc-brand">현대리바트</div>
+              <div class="bc-country">한국 · 2026.02</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">이모션(E-Motion) 높이조절 책상</div>
+            <div class="bc-desc">전동 승강 + 전용 앱 연동. 착석·기립 시간 기록 및 알림. 24가지 목재·색상 조합. 현대백화점 채널 활용 프리미엄 가정용 시장 공략. 기업 납품 라인 병행 운영.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">전동승강·앱연동</span>
+            <a class="bc-lnk" href="https://www.hyundailivart.co.kr/p/P200196893" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#4338CA">코아스</div>
+            <div class="bc-head">
+              <div class="bc-brand">코아스</div>
+              <div class="bc-country">한국 · 2026.01</div>
+              <div class="bc-badges"><span class="bdg bdg-n">신규</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">위무브(WiMove) 이동형 워크스테이션</div>
+            <div class="bc-desc">바퀴 달린 독립형 워크스테이션. 전동 승강 + 모니터 암 + 수납 일체형. 공간 재배치 유연성 극대화. 공유 오피스·애자일 조직 타겟. 소형 사무소 납품 강화 계획.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">이동형·공유오피스</span>
+            <a class="bc-lnk" href="https://www.ikoas.com/product/chair" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BOTTOM GRID -->
+    <div id="trends-sec" class="gbot">
+      <div class="card">
+        <div class="ch"><span class="ct">이달의 주요 트렌드</span><span class="ca">5개</span></div>
+        <div class="ti">
+          <div class="tnum">01</div>
+          <div><div class="tt">소재 순환성 — 재활용이 경쟁력</div><div class="td">Vitra V Foam, Flokk 97% 재활용 알루미늄, Okamura 폐어망 메쉬 — 소재 혁신 자체가 신제품 차별화 포인트로 부상</div></div>
+        </div>
+        <div class="ti">
+          <div class="tnum">02</div>
+          <div><div class="tt">자동 감응형 인체공학</div><div class="td">별도 조작 없이 체중·무게중심 감지 자동 지지 — Mynt·ingCloud·SHIGA·Insit 모두 이 방향으로 수렴</div></div>
+        </div>
+        <div class="ti">
+          <div class="tnum">03</div>
+          <div><div class="tt">게이밍·라이프스타일 채널 확장</div><div class="td">Haworth Halo · 시디즈 GX — B2B 브랜드가 MZ 소비자 채널 동시 진출. 제품이 아닌 브랜드 세계관 경쟁</div></div>
+        </div>
+        <div class="ti">
+          <div class="tnum">04</div>
+          <div><div class="tt">스타 디자이너 협업 프리미엄화</div><div class="td">Jean Nouvel·Foster+Partners·Bouroullec — 스타 건축가·디자이너 협업이 프리미엄 포지셔닝 표준으로 자리잡음</div></div>
+        </div>
+        <div class="ti">
+          <div class="tnum">05</div>
+          <div><div class="tt">복합 기능 공간 솔루션</div><div class="td">Konzert(조명+수납+파티션 통합) · Madomino(파티션+퍼치) — 단일 제품이 여러 업무 모드 지원하는 통합 시스템화</div></div>
+        </div>
+      </div>
+
+      <div id="insights-sec" class="card">
+        <div class="ch" style="background:#FDF9F5;border-bottom:1px solid #EDE8E3"><span class="ct">퍼시스 시사점</span><span class="ca">5개 전략 과제 · 2026.06</span></div>
+        <div class="ti"><span style="flex-shrink:0;background:#FEF2F2;color:#DC2626;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;margin-top:2px">긴급</span><div><div class="tt">한샘 B2B 오피스 진출 — 직접 경쟁 위협 분석 시급</div><div class="td">한샘이 이머전 시리즈로 중소기업·스타트업 오피스 시장에 첫 진출. 퍼시스의 전통 강세 시장을 직접 위협. B2C 인지도·유통망을 앞세운 가격 경쟁 대응을 위한 B2B 차별화 전략(납기·A/S·공간 컨설팅) 수립 시급.</div></div></div>
+        <div class="ti"><span style="flex-shrink:0;background:#FEF2F2;color:#DC2626;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;margin-top:2px">긴급</span><div><div class="tt">소재 친환경 혁신 없이는 글로벌 경쟁력 약화</div><div class="td">Vitra(V Foam 재활용 폼), Flokk(97% 재활용 알루미늄), Okamura(폐어망 메쉬) — 글로벌 브랜드가 재활용 소재를 핵심 스펙으로 내세움. 국내 공공·대기업 입찰에서도 친환경 인증 요건 확산 중. 퍼시스 소재 혁신 로드맵 수립 필요.</div></div></div>
+        <div class="ti"><span style="flex-shrink:0;background:#FEF3C7;color:#D97706;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;margin-top:2px">주의</span><div><div class="tt">자동 감응형 인체공학 — 차기 의자 개발 방향 검토</div><div class="td">Mynt(Vitra), ingCloud(Kokuyo), SHIGA(Itoki), Insit(Sedus) 4개 제품이 동시에 무조작 자동 체중 감지 지지로 수렴. 패시브 인체공학이 글로벌 표준으로 자리잡는 추세. 퍼시스 차기 의자 로드맵에 반드시 반영 필요.</div></div></div>
+        <div class="ti"><span style="flex-shrink:0;background:#FEF3C7;color:#D97706;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;margin-top:2px">주의</span><div><div class="tt">게이밍·홈오피스 채널 — 시디즈와 포지셔닝 차별화</div><div class="td">Haworth Halo, 시디즈 GX 등 B2B 브랜드의 소비자 채널 진입 가속화. 퍼시스 홈오피스 진입 시 시디즈와 동일 포지션은 출혈 경쟁 우려. 프리미엄 홈오피스 또는 기업-재택 패키지 계약 등 B2B 연계형 접근 선제 기획 권고.</div></div></div>
+        <div class="ti"><span style="flex-shrink:0;background:#EFF6FF;color:#2563EB;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;margin-top:2px">검토</span><div><div class="tt">단제품에서 공간 솔루션 패키지화 전략으로 전환</div><div class="td">Konzert(Knoll), Madomino(Plus Corp), Spout(Kinnarps) 등 단일 가구 판매에서 공간 솔루션 번들 제안이 글로벌 표준화. 통합 패키지 제안 시 단가 협상력 상승, 재구매율 향상. 제품 라인을 공간 모드(집중·협업·라운지)별 솔루션으로 재편 검토.</div></div></div>
+      </div>
+    </div>
+
+
+  </div><!-- end view-dash -->
+
+  <!-- BRANDS DIRECTORY VIEW -->
+  <div class="cnt" id="view-brands" style="display:none">
+    <!-- filter bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-size:16px;font-weight:700;letter-spacing:-.01em">브랜드 디렉토리</div>
+        <div style="font-size:13px;color:var(--t3);margin-top:2px">4개 지역 · 40개 글로벌 브랜드</div>
+      </div>
+      <div class="bfilt" id="bfilt">
+        <button class="bfbtn on" onclick="bFilter('all',this)">전체</button>
+        <button class="bfbtn" onclick="bFilter('na',this)">북미</button>
+        <button class="bfbtn" onclick="bFilter('eu',this)">유럽</button>
+        <button class="bfbtn" onclick="bFilter('jp',this)">일본</button>
+        <button class="bfbtn" onclick="bFilter('kr',this)">국내</button>
+      </div>
+    </div>
+
+    <!-- 북미 -->
+    <div class="reg-sec" id="bsec-na">
+      <div class="reg-hd"><div class="reg-hd-bar" style="background:var(--na)"></div><span class="reg-hd-name">북미 North America</span><span class="reg-hd-count">10개 브랜드</span><div class="reg-hd-line"></div></div>
+      <div class="bdc-grid" id="bgrid-na"></div>
+    </div>
+
+    <!-- 유럽 -->
+    <div class="reg-sec" id="bsec-eu">
+      <div class="reg-hd"><div class="reg-hd-bar" style="background:var(--eu)"></div><span class="reg-hd-name">유럽 Europe</span><span class="reg-hd-count">10개 브랜드</span><div class="reg-hd-line"></div></div>
+      <div class="bdc-grid" id="bgrid-eu"></div>
+    </div>
+
+    <!-- 일본 -->
+    <div class="reg-sec" id="bsec-jp">
+      <div class="reg-hd"><div class="reg-hd-bar" style="background:var(--jp)"></div><span class="reg-hd-name">일본 Japan</span><span class="reg-hd-count">10개 브랜드</span><div class="reg-hd-line"></div></div>
+      <div class="bdc-grid" id="bgrid-jp"></div>
+    </div>
+
+    <!-- 국내 -->
+    <div class="reg-sec" id="bsec-kr">
+      <div class="reg-hd"><div class="reg-hd-bar" style="background:var(--kr)"></div><span class="reg-hd-name">국내 Korea</span><span class="reg-hd-count">10개 브랜드</span><div class="reg-hd-line"></div></div>
+      <div class="bdc-grid" id="bgrid-kr"></div>
+    </div>
+  </div><!-- end view-brands -->
+
+  <div class="sbar">
+    <button class="btn bg" id="cb2" onclick="cl2()">🔗 링크 복사</button>
+    <button class="btn bp" onclick="window.print()">⬇ PDF 저장</button>
+  </div>
+</div><!-- end main -->
+</div><!-- end app -->
+
+<script>
+(function(){
+  var c=document.getElementById('gc');
+  if(c){
+    var x=c.getContext('2d'),cx=65,cy=66,r=48,lw=8;
+    x.beginPath();x.arc(cx,cy,r,Math.PI,0,false);
+    x.strokeStyle='#EDE8E3';x.lineWidth=lw;x.lineCap='round';x.stroke();
+    x.beginPath();x.arc(cx,cy,r,Math.PI,Math.PI-(Math.PI*.85),false);
+    x.strokeStyle='#C17F3E';x.lineWidth=lw;x.lineCap='round';x.stroke();
+  }
+  window.sc=function(id){
+    var w=document.getElementById('view-dash');
+    if(!w)return;
+    if(w.style.display==='none'){
+      showView('dash');
+      setTimeout(function(){
+        var el=document.getElementById(id);
+        if(!el)return;
+        var top=el.getBoundingClientRect().top+w.scrollTop-w.getBoundingClientRect().top-14;
+        w.scrollTo({top:top,behavior:'smooth'});
+        el.classList.add('hl');
+        setTimeout(function(){el.classList.remove('hl');},1600);
+      },50);
+      return;
+    }
+    var el=document.getElementById(id);
+    if(!el)return;
+    var top=el.getBoundingClientRect().top+w.scrollTop-w.getBoundingClientRect().top-14;
+    w.scrollTo({top:top,behavior:'smooth'});
+    el.classList.add('hl');
+    setTimeout(function(){el.classList.remove('hl');},1600);
+  };
+  window.pClick=function(e,id){
+    if(e.target.closest('a'))return;
+    sc(id);
+  };
+  function copy(id){
+    navigator.clipboard.writeText(window.location.href).then(function(){
+      var b=document.getElementById(id);
+      if(!b)return;
+      var o=b.textContent;
+      b.textContent='✓ 복사됨';b.classList.add('cp');
+      setTimeout(function(){b.textContent=o;b.classList.remove('cp');},2000);
+    });
+  }
+  window.cl=function(){copy('cb')};
+  window.cl2=function(){copy('cb2')};
+
+  // View switching
+  var brandsRendered=false;
+  window.showView=function(v){
+    var dash=document.getElementById('view-dash');
+    var brands=document.getElementById('view-brands');
+    var navD=document.getElementById('nav-dash');
+    var navB=document.getElementById('nav-brands');
+    var tbT=document.querySelector('.tb-t');
+    var tbS=document.querySelector('.tb-s');
+    if(v==='brands'){
+      dash.style.display='none';
+      brands.style.display='';
+      navD.classList.remove('on');
+      navB.classList.add('on');
+      tbT.textContent='브랜드 디렉토리';
+      tbS.textContent='4개 지역 40개 글로벌 브랜드 모니터링';
+      if(!brandsRendered){renderBrands();brandsRendered=true;}
+    } else {
+      brands.style.display='none';
+      dash.style.display='';
+      navD.classList.add('on');
+      navB.classList.remove('on');
+      tbT.textContent='글로벌 신제품 리포트';
+      tbS.textContent='2026년 6월 수집 · 4개 지역 40개 브랜드 모니터링';
+    }
+  };
+
+  // Brand filter
+  window.bFilter=function(r,btn){
+    document.querySelectorAll('.bfbtn').forEach(function(b){b.classList.remove('on')});
+    btn.classList.add('on');
+    ['na','eu','jp','kr'].forEach(function(id){
+      document.getElementById('bsec-'+id).style.display=(r==='all'||r===id)?'':'none';
+    });
+  };
+
+  // Brand logo marks
+  (function(){
+    var L={
+      'Herman Miller': {bg:'#D35F23',lines:['herman','miller']},
+      'Steelcase':     {bg:'#00467F',mark:'SC',   fs:14,fw:'700',ls:'0.5'},
+      'Knoll':         {bg:'#111111',mark:'K',    fs:19,fw:'700',ls:'0'},
+      'Haworth':       {bg:'#007A4D',mark:'H',    fs:19,fw:'700',ls:'0'},
+      'Humanscale':    {bg:'#2D2D2D',mark:'HS',   fs:13,fw:'600',ls:'0.5'},
+      'HON':           {bg:'#CF4520',mark:'HON',  fs:12,fw:'800',ls:'0.5'},
+      'Vitra':         {bg:'#CC0000',mark:'V',    fs:18,fw:'300',ls:'0',dots:true},
+      'Flokk (HÅG)':  {bg:'#004A3F',mark:'HÅG',  fs:10,fw:'700',ls:'0.5'},
+      'Kinnarps':      {bg:'#003370',mark:'K',    fs:19,fw:'700',ls:'0'},
+      'Wilkhahn':      {bg:'#1D3557',mark:'W',    fs:17,fw:'700',ls:'0'},
+      'Hay':           {bg:'#FFD600',color:'#111',mark:'HAY',fs:12,fw:'900',ls:'1'},
+      'Sedus':         {bg:'#1F3245',mark:'S',    fs:18,fw:'700',ls:'0'},
+      'Kokuyo':        {bg:'#00316B',mark:'K',    fs:19,fw:'700',ls:'0'},
+      'Okamura':       {bg:'#003F7F',mark:'O',    fs:18,fw:'700',ls:'0'},
+      'Itoki':         {bg:'#006DB6',mark:'i',    fs:21,fw:'700',ls:'0'},
+      'Plus Corporation':{bg:'#3D2A10',mark:'+',  fs:21,fw:'700',ls:'0'},
+      'Karimoku':      {bg:'#5C3317',mark:'K',    fs:19,fw:'700',ls:'0'},
+      'Maruni':        {bg:'#1A1A1A',mark:'M',    fs:18,fw:'700',ls:'0'},
+      '한샘':          {bg:'#C8001E',mark:'한샘',  fs:12,fw:'700',ls:'0'},
+      '시디즈':        {bg:'#0D7377',mark:'시디즈',fs:9, fw:'700',ls:'0'},
+      '현대리바트':    {bg:'#0A3D8F',mark:'리바트',fs:9, fw:'700',ls:'0'},
+      '코아스':        {bg:'#3730A3',mark:'코아스',fs:10,fw:'700',ls:'0'},
+    };
+    function mk(lg){
+      var c=lg.color||'#fff';
+      var p='<rect width="34" height="34" fill="'+lg.bg+'"/>';
+      if(lg.dots){
+        p+='<circle cx="25" cy="7" r="2.8" fill="white" opacity="0.7"/>';
+        p+='<circle cx="29" cy="14" r="2" fill="white" opacity="0.45"/>';
+      }
+      if(lg.lines){
+        p+='<text x="17" y="12.5" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="7.5" font-weight="300" font-family="Arial,sans-serif" letter-spacing="0.4">'+lg.lines[0]+'</text>';
+        p+='<text x="17" y="21.5" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="7.5" font-weight="300" font-family="Arial,sans-serif" letter-spacing="0.4">'+lg.lines[1]+'</text>';
+      } else {
+        p+='<text x="17" y="17" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="'+lg.fs+'" font-weight="'+lg.fw+'" font-family="Arial,sans-serif" letter-spacing="'+lg.ls+'">'+lg.mark+'</text>';
+      }
+      return '<svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">'+p+'</svg>';
+    }
+    document.querySelectorAll('.bc-av').forEach(function(el){
+      var top=el.closest('.bc-top');
+      if(!top)return;
+      var nm=top.querySelector('.bc-brand');
+      if(!nm)return;
+      var lg=L[nm.textContent.trim()];
+      if(!lg)return;
+      el.style.background=lg.bg;
+      el.innerHTML=mk(lg);
+    });
+  })();
+
+  // Brand directory data & renderer
+  var FURSYS_B64='iVBORw0KGgoAAAANSUhEUgAAAKsAAAAlCAYAAAA9UhmxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP0SURBVHhe7Zs9duIwEMcnWyUhZ0BlsuQKa5UBzoBpgSusSRfgDEAZzBlIysi5QvJSIp9h923pLfiy9RF/yWAn83tPBbLeSMJ/a0Ya+ywIggAQpAL8ECsQpKygWJHKgGJFKgOKFakMKFakMmjFelG7KrQsXHffV7Pdlq432+3IeJISZ4t5nnQ9S2m229Bst2HhusA5j4xBRa8/gJvGrWQnTxmNJ3v7o/FEun7TuI2MISlJbXHOodcfSG3zlrA2wmjFinwOYx4w5kGvP4DeYKAVLOd8fwN0baoI8zy4adxqhVUEKFYDMLa5cczzxEvQGwzEqi9Br3/8eaFYDdLrR1dYzjkwJgu46jDPO4mXQLEahHMOC3d5+O37ketfhVMIFdKKdT6bwr+/f4yUrm2L5k/K89NKGuNnZT6bAiFENAPea/xK+vH+JtnLUu6Hjmj6pIjjy1p02kglVuRA17bB7nTEamDsNC7yO4BizQEhdbEKAEC54iL5QbHmwF0e4tMdKNTiONO9InhRuxKroGvbUK+rV5O0UGoBtSyA7UG+uGum1ILn1SpSl4Q4W8zzoNmSEw5p5ub7vnZHnKSvoZM91qTUAlKvSw/FaDyB8eSQJIDtg6MKVeLwXjdnyGEIIfDx/gYAAAvXVR5d5ZkXIXVtrLojlVhNMp9N94OLE1ga4mzpBGSK8LyK7CvcD2jEapKwWIua1+7h0m0cMQwwSNe2IwKiliWtgKbo9QeR7BGlGy91DEhCD5QWzjm4y6UyuQIoVnNQasF8NhWrM7nhpIRjZmpZsW7UFISQXC7/MzjnWg+BYjUE574yhr0fOjB0nEJWWPGYbOj8LkxEIl27U1hfnKuTKaliVkotsH6ZcTddu7O/gXFxZhribOnirTQbLO/V04rz4/1NKcydaxPHlhTf95Uvjaj645xvN4Dqmx5H3AYrTBF9wTbBIBFoOL+sSeVxsRCbGeGu1ZL6umu1xGaJiLP1wph0/fyyFrwwFrETx3q9Dq5/NiQ7D6Ox2NQIunGv12uxaW4eRmOpn+ufDbGZER4XC6mv88ua2CwIgiDAMCAjhJD90VuYJOlWJBso1hyowoas7hCJB8WKVIbSipWxbJ+fqIJ1Upc3PMfC1Gcfqk2hiKnPZnRHR2FUnw9lKapMmI5SiNXUCcN3gxAinQQUhSo+LwpdgqMUYu3axR2cAwDYBds/Fbq3vorgmP+hbvEqhViLzIgMHeeoq8KxIIRkOofOQvilo6Kh1Cr/uwH3Qween1ZaF5AGQsgmEfC00k68qhBCoGvbygN6k+xCjKHjHOWhSNKXNoOFIGWjNCsrgsSBYkUqA4oVqQwoVqQyoFiRyoBiRSrDf3mTgsrkd3bMAAAAAElFTkSuQmCC';
+  var BDATA={
+    na:[
+      {n:'Steelcase',    c:'미국',    cat:'워크플레이스 시스템',   url:'https://www.steelcase.com',              bg:'#00467F',mark:'SC', fs:14,fw:'700'},
+      {n:'Herman Miller',c:'미국',    cat:'인체공학·라운지',        url:'https://www.hermanmiller.com',           bg:'#D35F23',lines:['herman','miller']},
+      {n:'Haworth',      c:'미국',    cat:'오피스 솔루션',          url:'https://www.haworth.com',                bg:'#007A4D',mark:'H',  fs:20,fw:'700'},
+      {n:'Knoll',        c:'미국',    cat:'모더니즘·시스템가구',    url:'https://www.knoll.com',                  bg:'#111111',mark:'K',  fs:20,fw:'700'},
+      {n:'Teknion',      c:'캐나다',  cat:'워크플레이스 시스템',    url:'https://www.teknion.com',                bg:'#003A5D',mark:'T',  fs:20,fw:'700'},
+      {n:'Allsteel',     c:'미국',    cat:'오피스 시팅',            url:'https://www.allsteel.com',               bg:'#2E4057',mark:'AS', fs:14,fw:'700'},
+      {n:'Humanscale',   c:'미국',    cat:'인체공학·승강데스크',    url:'https://www.humanscale.com',             bg:'#2D2D2D',mark:'HS', fs:14,fw:'600'},
+      {n:'HON',          c:'미국',    cat:'중가형 오피스가구',       url:'https://www.hon.com',                    bg:'#CF4520',mark:'HON',fs:13,fw:'800'},
+      {n:'Kimball',      c:'미국',    cat:'계약가구·헬스케어',      url:'https://www.kimball.com',                bg:'#4A1942',mark:'K',  fs:20,fw:'700'},
+      {n:'Global Furniture Group',c:'캐나다',cat:'종합 오피스가구',url:'https://www.globalfurnituregroup.com',   bg:'#1A4731',mark:'G',  fs:20,fw:'700'},
+    ],
+    eu:[
+      {n:'Vitra',         c:'스위스',    cat:'디자인·워크체어',      url:'https://www.vitra.com',           bg:'#CC0000',mark:'V',  fs:20,fw:'300',dots:true},
+      {n:'Kinnarps',      c:'스웨덴',    cat:'지속가능 오피스가구',  url:'https://www.kinnarps.com',        bg:'#003370',mark:'K',  fs:20,fw:'700'},
+      {n:'Wilkhahn',      c:'독일',      cat:'회의·인체공학',        url:'https://www.wilkhahn.com',        bg:'#1D3557',mark:'W',  fs:18,fw:'700'},
+      {n:'Bene',          c:'오스트리아',cat:'오피스 시스템',         url:'https://www.bene.com',            bg:'#1C2541',mark:'B',  fs:20,fw:'700'},
+      {n:'Sedus',         c:'독일',      cat:'인체공학 워크체어',    url:'https://www.sedus.com',           bg:'#1F3245',mark:'S',  fs:20,fw:'700'},
+      {n:'Senator Group', c:'영국',      cat:'계약가구·회의',        url:'https://www.senatorgroup.com',    bg:'#2D3561',mark:'SG', fs:14,fw:'700'},
+      {n:'Hay',           c:'덴마크',    cat:'라이프스타일·계약',    url:'https://www.hay.com',             bg:'#FFD600',color:'#111',mark:'HAY',fs:13,fw:'900'},
+      {n:'Orangebox',     c:'영국',      cat:'협업·라운지',          url:'https://www.orangebox.com',       bg:'#E35205',mark:'O',  fs:20,fw:'700'},
+      {n:'Flokk',         c:'노르웨이',  cat:'지속가능·인체공학',    url:'https://www.flokk.com',           bg:'#004A3F',mark:'F',  fs:20,fw:'700'},
+      {n:'Arper',         c:'이탈리아',  cat:'라운지·계약가구',      url:'https://www.arper.com',           bg:'#8B6914',mark:'A',  fs:20,fw:'700'},
+    ],
+    jp:[
+      {n:'Okamura',       c:'일본',cat:'워크체어·스마트오피스', url:'https://www.okamura.com',       bg:'#003F7F',mark:'O', fs:20,fw:'700'},
+      {n:'Kokuyo',        c:'일본',cat:'IoT·스마트오피스',      url:'https://www.kokuyo.com',        bg:'#00316B',mark:'K', fs:20,fw:'700'},
+      {n:'Itoki',         c:'일본',cat:'워크체어·오피스시스템', url:'https://www.itoki.co.jp',       bg:'#006DB6',mark:'i', fs:22,fw:'700'},
+      {n:'Uchida Yoko',   c:'일본',cat:'오피스 시스템',         url:'https://www.uchida.co.jp',      bg:'#1B3A6B',mark:'U', fs:20,fw:'700'},
+      {n:'Plus Corporation',c:'일본',cat:'오피스·문구가구',     url:'https://www.plus.co.jp',        bg:'#3D2A10',mark:'+', fs:22,fw:'700'},
+      {n:'Aichi',         c:'일본',cat:'워크체어 전문',         url:'https://www.aichi-net.co.jp',   bg:'#B22222',mark:'A', fs:20,fw:'700'},
+      {n:'Karimoku',      c:'일본',cat:'목공·프리미엄 가구',    url:'https://www.karimoku.com',      bg:'#5C3317',mark:'K', fs:20,fw:'700'},
+      {n:'Tendo Mokko',   c:'일본',cat:'전통 목공예 가구',      url:'https://www.tendo-mokko.co.jp', bg:'#3D2B1F',mark:'T', fs:20,fw:'700'},
+      {n:'Maruni',        c:'일본',cat:'목재 컨트랙트가구',     url:'https://www.maruni.com',        bg:'#1A1A1A',mark:'M', fs:20,fw:'700'},
+      {n:'Askul',         c:'일본',cat:'오피스용품·가구',       url:'https://www.askul.co.jp',       bg:'#0066CC',mark:'A', fs:20,fw:'700'},
+    ],
+    kr:[
+      {n:'퍼시스',     c:'한국',cat:'종합 오피스가구',      url:'https://www.fursys.co.kr',          bg:'#1C1917',fursys:true},
+      {n:'현대리바트', c:'한국',cat:'오피스·주거가구',      url:'https://www.hyundailivart.co.kr',   bg:'#0A3D8F',mark:'리바트',fs:10,fw:'700'},
+      {n:'코아스',     c:'한국',cat:'오피스 시스템가구',    url:'https://www.ikoas.com',             bg:'#3730A3',mark:'코아스',fs:11,fw:'700'},
+      {n:'한샘',       c:'한국',cat:'홈퍼니싱·B2B 오피스', url:'https://www.hanssem.com',           bg:'#C8001E',mark:'한샘', fs:13,fw:'700'},
+      {n:'시디즈',     c:'한국',cat:'인체공학 워크체어',    url:'https://www.sidiz.com',             bg:'#0D7377',mark:'시디즈',fs:10,fw:'700'},
+      {n:'데스커',     c:'한국',cat:'1인 오피스·홈오피스',  url:'https://www.desker.co.kr',          bg:'#374151',mark:'D',   fs:20,fw:'700'},
+      {n:'파트라',     c:'한국',cat:'홈오피스 솔루션',      url:'https://www.patra.co.kr',           bg:'#92400E',mark:'P',   fs:20,fw:'700'},
+      {n:'베스툴',     c:'한국',cat:'인체공학 의자',        url:'https://www.bestuhl.co.kr',         bg:'#1E40AF',mark:'B',   fs:20,fw:'700'},
+      {n:'에넥스',     c:'한국',cat:'주방·오피스가구',      url:'https://www.enex.co.kr',            bg:'#047857',mark:'E',   fs:20,fw:'700'},
+      {n:'동연디자인', c:'한국',cat:'공간 디자인가구',      url:'https://www.dongyeon.co.kr',        bg:'#6D28D9',mark:'D',   fs:20,fw:'700'},
+    ]
+  };
+  function mkBLogo(b){
+    var s=40,c=b.color||'#fff';
+    if(b.fursys)return '<div class="bdc-av2" style="background:#fff;border:1px solid #E8E4DF;padding:5px"><img src="data:image/png;base64,'+FURSYS_B64+'" style="height:14px;mix-blend-mode:multiply" alt="FURSYS"></div>';
+    var p='<rect width="'+s+'" height="'+s+'" fill="'+b.bg+'"/>';
+    if(b.dots){p+='<circle cx="29" cy="8" r="3.2" fill="white" opacity="0.7"/><circle cx="34" cy="15" r="2.4" fill="white" opacity="0.45"/>';}
+    if(b.lines){
+      p+='<text x="'+s/2+'" y="'+(s*.38)+'" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="'+(s*.22)+'" font-weight="300" font-family="Arial,sans-serif" letter-spacing="0.4">'+b.lines[0]+'</text>';
+      p+='<text x="'+s/2+'" y="'+(s*.63)+'" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="'+(s*.22)+'" font-weight="300" font-family="Arial,sans-serif" letter-spacing="0.4">'+b.lines[1]+'</text>';
+    } else {
+      p+='<text x="'+s/2+'" y="'+s/2+'" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="'+b.fs+'" font-weight="'+(b.fw||'700')+'" font-family="Arial,sans-serif">'+b.mark+'</text>';
+    }
+    return '<div class="bdc-av2"><svg width="'+s+'" height="'+s+'" viewBox="0 0 '+s+' '+s+'" xmlns="http://www.w3.org/2000/svg">'+p+'</svg></div>';
+  }
+  function renderBrands(){
+    ['na','eu','jp','kr'].forEach(function(r){
+      var grid=document.getElementById('bgrid-'+r);
+      if(!grid)return;
+      grid.innerHTML=BDATA[r].map(function(b){
+        return '<a href="'+b.url+'" target="_blank" class="bdc">'
+          +mkBLogo(b)
+          +'<div class="bdc-name">'+b.n+'</div>'
+          +'<div class="bdc-ctr">'+b.c+'</div>'
+          +'<div class="bdc-cat">'+b.cat+'</div>'
+          +'<div class="bdc-url">홈페이지 →</div>'
+          +'</a>';
+      }).join('');
+    });
+  }
+})();
+</script>

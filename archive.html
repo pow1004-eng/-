@@ -1,0 +1,59 @@
+<title>퍼시스 · 글로벌 신제품 리포트 아카이브</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:#FAFAF8;color:#1C1917;font-size:15px;line-height:1.5}
+.wrap{max-width:820px;margin:0 auto;padding:48px 24px}
+.hd{display:flex;align-items:center;gap:14px;margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid #E8E4DF}
+.logo{height:22px;display:block}
+.hd-sub{font-size:13px;color:#A8A29E;margin-top:2px}
+.hd-back{margin-left:auto;font-size:13px;font-weight:600;color:#C17F3E;text-decoration:none;padding:7px 14px;border:1px solid #E8D5BC;border-radius:8px;background:#FDF9F5;transition:opacity .12s;flex-shrink:0}
+.hd-back:hover{opacity:.8}
+.sec-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#A8A29E;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:40px}
+.card{background:#FFF;border:1px solid #E8E4DF;border-radius:12px;padding:20px 20px 18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 3px rgba(28,25,23,.06);transition:box-shadow .15s,border-color .15s}
+.card:hover{box-shadow:0 4px 14px rgba(28,25,23,.09);border-color:#D8D3CC}
+.card.latest{border-color:#C17F3E;background:#FDF9F5}
+.badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;width:fit-content}
+.badge-latest{background:#FEF3C7;color:#D97706}
+.badge-arch{background:#F0EDE9;color:#78716C}
+.month{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.meta{font-size:12px;color:#A8A29E}
+.arrow{margin-left:auto;margin-top:auto;font-size:15px;color:#C17F3E;align-self:flex-end}
+.how-box{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:18px 20px;margin-bottom:40px;font-size:13px;color:#166534;line-height:1.7}
+.how-box b{font-weight:700;font-size:14px}
+</style>
+
+<div class="wrap">
+  <div class="hd">
+    <div>
+      <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAAAlCAYAAAA9UhmxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP0SURBVHhe7Zs9duIwEMcnWyUhZ0BlsuQKa5UBzoBpgSusSRfgDEAZzBlIysi5QvJSIp9h923pLfiy9RF/yWAn83tPBbLeSMJ/a0Ya+ywIggAQpAL8ECsQpKygWJHKgGJFKgOKFakMKFakMmjFelG7KrQsXHffV7Pdlq432+3IeJISZ4t5nnQ9S2m229Bst2HhusA5j4xBRa8/gJvGrWQnTxmNJ3v7o/FEun7TuI2MISlJbXHOodcfSG3zlrA2wmjFinwOYx4w5kGvP4DeYKAVLOd8fwN0baoI8zy4adxqhVUEKFYDMLa5cczzxEvQGwzEqi9Br3/8eaFYDdLrR1dYzjkwJgu46jDPO4mXQLEahHMOC3d5+O37ketfhVMIFdKKdT6bwr+/f4yUrm2L5k/K89NKGuNnZT6bAiFENAPea/xK+vH+JtnLUu6Hjmj6pIjjy1p02kglVuRA17bB7nTEamDsNC7yO4BizQEhdbEKAEC54iL5QbHmwF0e4tMdKNTiONO9InhRuxKroGvbUK+rV5O0UGoBtSyA7UG+uGum1ILn1SpSl4Q4W8zzoNmSEw5p5ub7vnZHnKSvoZM91qTUAlKvSw/FaDyB8eSQJIDtg6MKVeLwXjdnyGEIIfDx/gYAAAvXVR5d5ZkXIXVtrLojlVhNMp9N94OLE1ga4mzpBGSK8LyK7CvcD2jEapKwWIua1+7h0m0cMQwwSNe2IwKiliWtgKbo9QeR7BGlGy91DEhCD5QWzjm4y6UyuQIoVnNQasF8NhWrM7nhpIRjZmpZsW7UFISQXC7/MzjnWg+BYjUE574yhr0fOjB0nEJWWPGYbOj8LkxEIl27U1hfnKuTKaliVkotsH6ZcTddu7O/gXFxZhribOnirTQbLO/V04rz4/1NKcydaxPHlhTf95Uvjaj645xvN4Dqmx5H3AYrTBF9wTbBIBFoOL+sSeVxsRCbGeGu1ZL6umu1xGaJiLP1wph0/fyyFrwwFrETx3q9Dq5/NiQ7D6Ox2NQIunGv12uxaW4eRmOpn+ufDbGZER4XC6mv88ua2CwIgiDAMCAjhJD90VuYJOlWJBso1hyowoas7hCJB8WKVIbSipWxbJ+fqIJ1Upc3PMfC1Gcfqk2hiKnPZnRHR2FUnw9lKapMmI5SiNXUCcN3gxAinQQUhSo+LwpdgqMUYu3axR2cAwDYBds/Fbq3vorgmP+hbvEqhViLzIgMHeeoq8KxIIRkOofOQvilo6Kh1Cr/uwH3Qween1ZaF5AGQsgmEfC00k68qhBCoGvbygN6k+xCjKHjHOWhSNKXNoOFIGWjNCsrgsSBYkUqA4oVqQwoVqQyoFiRyoBiRSrDf3mTgsrkd3bMAAAAAElFTkSuQmCC" alt="FURSYS" style="mix-blend-mode:multiply">
+      <div class="hd-sub">글로벌 신제품 리포트 아카이브</div>
+    </div>
+    <a href="index.html" class="hd-back">← 최신 리포트</a>
+  </div>
+
+  <div class="how-box">
+    <b>자동 아카이브 시스템</b><br>
+    매월 1일 00:00 (KST) GitHub Actions가 자동으로 현재 대시보드를 아카이브합니다.<br>
+    새 리포트 내용을 index.html에 업데이트하면 다음 달 1일에 자동으로 이 목록에 추가됩니다.
+  </div>
+
+  <div class="sec-title">현재 리포트</div>
+  <div class="grid">
+    <a href="index.html" class="card latest">
+      <span class="badge badge-latest">최신</span>
+      <div class="month">2026년 06월</div>
+      <div class="meta">40개 브랜드 · 30+ 신제품 모니터링</div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+
+  <div class="sec-title">아카이브</div>
+  <div class="grid" id="archive-grid">
+    <!-- 매월 1일 GitHub Actions가 자동으로 카드를 추가합니다 -->
+  </div>
+
+  <div style="font-size:12px;color:#A8A29E;text-align:center;margin-top:8px">
+    7월 1일부터 월별 아카이브가 이 목록에 자동으로 쌓입니다
+  </div>
+</div>
