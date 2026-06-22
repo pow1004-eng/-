@@ -937,9 +937,22 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     x.strokeStyle='#C17F3E';x.lineWidth=lw;x.lineCap='round';x.stroke();
   }
   window.sc=function(id){
+    var w=document.getElementById('view-dash');
+    if(!w)return;
+    if(w.style.display==='none'){
+      showView('dash');
+      setTimeout(function(){
+        var el=document.getElementById(id);
+        if(!el)return;
+        var top=el.getBoundingClientRect().top+w.scrollTop-w.getBoundingClientRect().top-14;
+        w.scrollTo({top:top,behavior:'smooth'});
+        el.classList.add('hl');
+        setTimeout(function(){el.classList.remove('hl');},1600);
+      },50);
+      return;
+    }
     var el=document.getElementById(id);
-    var w=document.querySelector('.cnt');
-    if(!el||!w)return;
+    if(!el)return;
     var top=el.getBoundingClientRect().top+w.scrollTop-w.getBoundingClientRect().top-14;
     w.scrollTo({top:top,behavior:'smooth'});
     el.classList.add('hl');
