@@ -1,0 +1,48 @@
+name: 월별 콘텐츠 자동 업데이트
+
+on:
+  schedule:
+    # 매월 1일 00:10 KST = 전일 15:10 UTC (아카이브 후 실행)
+    - cron: '10 15 1 * *'
+  workflow_dispatch:   # 수동 실행 가능
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Archive previous month first
+        run: python3 scripts/monthly_archive.py
+        continue-on-error: true   # 이미 아카이브된 경우 무시
+
+      - name: Research & update content
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 scripts/monthly_update.py
+
+      - name: Commit & push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html archive.html reports/
+          git diff --cached --quiet && echo "변경 없음" && exit 0
+          MONTH_LABEL=$(python3 -c "
+from datetime import date
+d = date.today()
+print(f'{d.year}년 {d.month:02d}월')
+")
+          git commit -m "🤖 ${MONTH_LABEL} 신제품 리포트 자동 업데이트"
+          git push

@@ -1,9 +1,8 @@
-name: 월별 아카이브
+name: 월별 아카이브 (수동 전용)
+# 자동 스케줄은 monthly-update.yml 에서 통합 처리
+# 이 워크플로우는 수동으로 특정 월만 아카이브할 때 사용
 
 on:
-  schedule:
-    # 매월 1일 00:00 KST = 전일 15:00 UTC
-    - cron: '0 15 1 * *'
   workflow_dispatch:
     inputs:
       year:
