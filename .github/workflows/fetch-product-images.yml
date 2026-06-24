@@ -1,0 +1,48 @@
+name: 제품 대표 이미지 자동 수집
+
+on:
+  # 매월 1일 콘텐츠 업데이트 완료 후 자동 실행 (KST 00:30 = UTC 15:30)
+  schedule:
+    - cron: '30 15 1 * *'
+  # 수동 실행 (언제든 GitHub Actions 탭에서 실행 가능)
+  workflow_dispatch:
+
+jobs:
+  fetch-images:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: 제품 이미지 자동 수집
+        run: node scripts/fetch_product_images_pw.mjs
+        continue-on-error: true   # 일부 실패해도 커밋 진행
+
+      - name: 이미지 파일 확인
+        run: |
+          echo "=== products/ 폴더 ==="
+          ls -lh products/ || echo "(없음)"
+
+      - name: Commit & Push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products/ index.html
+          git diff --cached --quiet && echo "변경 없음 — 커밋 건너뜀" && exit 0
+          MONTH=$(date +'%Y년 %m월')
+          git commit -m "🖼️ ${MONTH} 주목 신제품 대표 이미지 자동 수집"
+          git push

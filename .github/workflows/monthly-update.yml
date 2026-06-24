@@ -21,8 +21,19 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: pip install anthropic
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install chromium --with-deps
 
       - name: Archive previous month first
         run: python3 scripts/monthly_archive.py
@@ -33,16 +44,20 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python3 scripts/monthly_update.py
 
+      - name: 제품 대표 이미지 자동 수집
+        run: node scripts/fetch_product_images_pw.mjs
+        continue-on-error: true
+
       - name: Commit & push
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html archive.html reports/
+          git add index.html archive.html reports/ products/
           git diff --cached --quiet && echo "변경 없음" && exit 0
           MONTH_LABEL=$(python3 -c "
 from datetime import date
 d = date.today()
 print(f'{d.year}년 {d.month:02d}월')
 ")
-          git commit -m "🤖 ${MONTH_LABEL} 신제품 리포트 자동 업데이트"
+          git commit -m "🤖 ${MONTH_LABEL} 신제품 리포트 + 이미지 자동 업데이트"
           git push
