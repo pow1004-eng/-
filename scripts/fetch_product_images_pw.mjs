@@ -21,16 +21,23 @@ if (!fs.existsSync(PROD_DIR)) fs.mkdirSync(PROD_DIR, { recursive: true });
 // index.html에서 주목 신제품 항목 파싱 (bc-id → 기사 URL)
 function parseProducts(html) {
   const items = [];
-  // .pi 블록 전체를 매칭
-  const piRe = /class="pi[^"]*"[^>]*onclick="pClick\(event,'(bc-[^']+)'\)"([\s\S]*?)(?=class="pi[^"]*"|class="p-all")/g;
+  // onclick 속성에서 bc-id 추출
+  const idRe = /onclick="pClick\(event,'(bc-[^']+)'\)"/g;
   let m;
-  while ((m = piRe.exec(html)) !== null) {
-    const id    = m[1];
-    const block = m[2];
-    const link  = block.match(/href="([^"#][^"]*)"[^>]*>↗/);
-    if (link && link[1].startsWith('http')) {
-      items.push({ id, url: link[1] });
-    }
+  while ((m = idRe.exec(html)) !== null) {
+    const id  = m[1];
+    const pos = m.index;
+    // 해당 .pi 블록 끝(다음 .pi 또는 .p-all 시작)까지만 탐색
+    const nextPi = html.indexOf('onclick="pClick', pos + 10);
+    const pAll   = html.indexOf('p-all', pos + 10);
+    const end    = Math.min(
+      nextPi > 0 ? nextPi : Infinity,
+      pAll   > 0 ? pAll   : Infinity
+    );
+    const block = end < Infinity ? html.slice(pos, end) : html.slice(pos, pos + 800);
+    // ↗ 링크 추출
+    const link = block.match(/href="(https?:\/\/[^"]+)"[^>]*>\s*↗/);
+    if (link) items.push({ id, url: link[1] });
   }
   return items;
 }
