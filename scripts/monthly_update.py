@@ -27,7 +27,8 @@ REGIONS = {
         "name": "북미 North America",
         "color": "#3B82F6",
         "brands": ["Steelcase", "Herman Miller", "Haworth", "Knoll", "Teknion",
-                   "Allsteel", "Humanscale", "HON", "Kimball", "Global Furniture Group"],
+                   "Allsteel", "Humanscale", "HON", "Kimball", "Global Furniture Group",
+                   "Watson", "Davis Furniture", "OFS", "KI"],
         "sec_id": "na-sec",
     },
     "eu": {

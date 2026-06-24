@@ -211,7 +211,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
   </div>
   <nav class="sb-nav">
     <button class="sbl on" id="nav-dash" onclick="showView('dash')"><span class="sbl-ic">⊞</span>대시보드</button>
-    <button class="sbl" id="nav-brands" onclick="showView('brands')"><span class="sbl-ic">◎</span>브랜드<span class="sbl-cnt">40</span></button>
+    <button class="sbl" id="nav-brands" onclick="showView('brands')"><span class="sbl-ic">◎</span>브랜드<span class="sbl-cnt">44</span></button>
     <button class="sbl"><span class="sbl-ic">↗</span>전체 리포트</button>
     <div class="sb-grp">지역별</div>
     <button class="sbl" onclick="sc('na-sec')"><span class="sbl-ic" style="color:var(--na)">●</span>북미<span class="sbl-cnt">10</span></button>
@@ -238,7 +238,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     <div style="display:flex;align-items:center;gap:12px">
       <div>
         <div class="tb-t">글로벌 신제품 리포트</div>
-        <div class="tb-s">2026년 6월 수집 · 4개 지역 40개 브랜드 모니터링</div>
+        <div class="tb-s">2026년 6월 수집 · 4개 지역 44개 브랜드 모니터링</div>
       </div>
       <span style="font-size:13px;font-weight:700;background:#FEF3C7;color:#D97706;padding:3px 11px;border-radius:20px;white-space:nowrap;flex-shrink:0">2026년 6월</span>
     </div>
@@ -271,7 +271,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
           <canvas id="gc" width="130" height="74"></canvas>
           <div class="gauge-lbl">85%</div>
         </div>
-        <div class="kpi-sub" style="text-align:center">40개 브랜드 중 17개 업데이트 완료</div>
+        <div class="kpi-sub" style="text-align:center">44개 브랜드 중 17개 업데이트 완료</div>
         <button class="kpi-lnk" style="text-align:center;display:block">전체 현황 보기 →</button>
       </div>
     </div>
@@ -499,6 +499,25 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
           <div class="bc-foot">
             <span class="bc-tag">하이브리드·중가시장</span>
             <a class="bc-lnk" href="https://www.hon.com/chairs/lounge-chairs" target="_blank">자세히 보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="bc" id="bc-ki">
+          <div class="bc-top">
+            <div class="bc-av" style="background:#006341">KI</div>
+            <div class="bc-head">
+              <div class="bc-brand">KI</div>
+              <div class="bc-country">미국 · 2026.06</div>
+              <div class="bc-badges"><span class="bdg bdg-a">Best of NeoCon 2026</span></div>
+            </div>
+          </div>
+          <div class="bc-body">
+            <div class="bc-prod">Kiaura Collection</div>
+            <div class="bc-desc">NeoCon 2026 Best of Competition 수상. Cognetic Technology™ 기반으로 사용자 체형·자세에 자동 적응하는 인체공학 메커니즘 탑재. 7개 부문 Best of NeoCon 수상으로 올해 가장 주목받는 북미 신제품.</div>
+          </div>
+          <div class="bc-foot">
+            <span class="bc-tag">인체공학·NeoCon수상</span>
+            <a class="bc-lnk" href="https://www.ki.com/about/pressroom/press-releases/2026/ki-earns-seven-best-of-neocon-awards-including-best-of-competition-for-the-kiaura-collection-built-with-cognetic-technology/" target="_blank">자세히 보기 ↗</a>
           </div>
         </div>
 
@@ -1007,7 +1026,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
       navD.classList.add('on');
       navB.classList.remove('on');
       tbT.textContent='글로벌 신제품 리포트';
-      tbS.textContent='2026년 6월 수집 · 4개 지역 40개 브랜드 모니터링';
+      tbS.textContent='2026년 6월 수집 · 4개 지역 44개 브랜드 모니터링';
     }
   };
 
@@ -1180,6 +1199,10 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
       {n:'HON',          c:'미국',    cat:'중가형 오피스가구',       url:'https://www.hon.com',                    bg:'#CF4520',mark:'HON',fs:13,fw:'800'},
       {n:'Kimball',      c:'미국',    cat:'계약가구·헬스케어',      url:'https://www.kimball.com',                bg:'#4A1942',mark:'K',  fs:20,fw:'700'},
       {n:'Global Furniture Group',c:'캐나다',cat:'종합 오피스가구',url:'https://www.globalfurnituregroup.com',   bg:'#1A4731',mark:'G',  fs:20,fw:'700'},
+      {n:'Watson',               c:'미국',    cat:'협업·벤칭 시스템',      url:'https://www.watsonfurniture.com',        bg:'#005B8E',mark:'W',  fs:18,fw:'700'},
+      {n:'Davis Furniture',      c:'미국',    cat:'시팅·라운지',            url:'https://www.davisfurniture.com',         bg:'#8B1A1A',mark:'DF', fs:13,fw:'700'},
+      {n:'OFS',                  c:'미국',    cat:'오피스 시스템·시팅',    url:'https://www.ofs.com',                    bg:'#1C1C1C',mark:'OFS',fs:12,fw:'700'},
+      {n:'KI',                   c:'미국',    cat:'교육·의료·오피스가구',  url:'https://www.ki.com',                     bg:'#006341',mark:'KI', fs:16,fw:'800'},
     ],
     eu:[
       {n:'Vitra',         c:'스위스',    cat:'디자인·워크체어',      url:'https://www.vitra.com',           bg:'#CC0000',mark:'V',  fs:20,fw:'300',dots:true},
