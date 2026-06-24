@@ -88,6 +88,8 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
 .pb{font-size:14px;color:var(--t3)}
 .pacts{display:flex;gap:3px;opacity:0;transition:opacity .12s;flex-shrink:0}
 .pi:hover .pacts,.pi.on .pacts{opacity:1}
+.pi-img{width:80px;height:60px;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--g);border:1px solid var(--bd)}
+.pi-img img{width:100%;height:100%;object-fit:cover;display:block}
 .ibtn{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--g);border:1px solid var(--bd);cursor:pointer;font-size:13px;color:var(--t2);text-decoration:none;transition:background .1s,color .1s}
 .ibtn:hover{background:var(--w);color:var(--a);border-color:var(--abr)}
 .bdg{font-size:12px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
@@ -1057,6 +1059,19 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     '에넥스':                 'logos/enex.png',
     '동연디자인':             'logos/donyeon.png',
   };
+
+  // 주목 신제품 대표 이미지 (products/ 폴더에 파일 추가 시 여기에 등록)
+  var PRODUCTS={
+    'bc-ko': 'products/kokuyo-ingcloud.jpg',
+    'bc-hm': 'products/hermanmiller-aeron.jpg',
+    'bc-ok': 'products/okamura-muku.jpg',
+    'bc-vi': 'products/vitra-mynt.jpg',
+    'bc-kn': 'products/knoll-konzert.jpg',
+    'bc-hs': 'products/hanssem-imersion.jpg',
+    'bc-it': 'products/itoki-shiga.jpg',
+    'bc-sc': 'products/steelcase-jeannouvel.jpg',
+    'bc-fl': 'products/flokk-hag-tion.jpg',
+  };
   (function(){
     var L={
       'Herman Miller': {bg:'#D35F23',lines:['herman','miller']},
@@ -1129,6 +1144,20 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
       if(!lg)return;
       el.style.background=lg.bg;
       el.innerHTML=mk(lg);
+    });
+
+    // 주목 신제품 대표 이미지 삽입
+    document.querySelectorAll('.pi[onclick]').forEach(function(el){
+      var m=el.getAttribute('onclick').match(/'(bc-[^']+)'/);
+      if(!m)return;
+      var pid=m[1];
+      if(!PRODUCTS[pid])return;
+      var d=document.createElement('div');
+      d.className='pi-img';
+      d.innerHTML='<img src="'+PRODUCTS[pid]+'" alt="" loading="lazy" onerror="this.parentNode.style.display=\'none\'">';
+      var pa=el.querySelector('.pacts');
+      if(pa)el.insertBefore(d,pa);
+      else el.appendChild(d);
     });
   })();
 
