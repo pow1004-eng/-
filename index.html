@@ -211,7 +211,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
   </div>
   <nav class="sb-nav">
     <button class="sbl on" id="nav-dash" onclick="showView('dash')"><span class="sbl-ic">⊞</span>대시보드</button>
-    <button class="sbl" id="nav-brands" onclick="showView('brands')"><span class="sbl-ic">◎</span>브랜드<span class="sbl-cnt">44</span></button>
+    <button class="sbl" id="nav-brands" onclick="showView('brands')"><span class="sbl-ic">◎</span>브랜드<span class="sbl-cnt">55</span></button>
     <button class="sbl"><span class="sbl-ic">↗</span>전체 리포트</button>
     <div class="sb-grp">지역별</div>
     <button class="sbl" onclick="sc('na-sec')"><span class="sbl-ic" style="color:var(--na)">●</span>북미<span class="sbl-cnt">10</span></button>
@@ -238,7 +238,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     <div style="display:flex;align-items:center;gap:12px">
       <div>
         <div class="tb-t">글로벌 신제품 리포트</div>
-        <div class="tb-s">2026년 6월 수집 · 4개 지역 44개 브랜드 모니터링</div>
+        <div class="tb-s">2026년 6월 수집 · 4개 지역 55개 브랜드 모니터링</div>
       </div>
       <span style="font-size:13px;font-weight:700;background:#FEF3C7;color:#D97706;padding:3px 11px;border-radius:20px;white-space:nowrap;flex-shrink:0">2026년 6월</span>
     </div>
@@ -271,7 +271,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
           <canvas id="gc" width="130" height="74"></canvas>
           <div class="gauge-lbl">85%</div>
         </div>
-        <div class="kpi-sub" style="text-align:center">44개 브랜드 중 17개 업데이트 완료</div>
+        <div class="kpi-sub" style="text-align:center">55개 브랜드 중 17개 업데이트 완료</div>
         <button class="kpi-lnk" style="text-align:center;display:block">전체 현황 보기 →</button>
       </div>
     </div>
@@ -1026,7 +1026,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
       navD.classList.add('on');
       navB.classList.remove('on');
       tbT.textContent='글로벌 신제품 리포트';
-      tbS.textContent='2026년 6월 수집 · 4개 지역 44개 브랜드 모니터링';
+      tbS.textContent='2026년 6월 수집 · 4개 지역 55개 브랜드 모니터링';
     }
   };
 
@@ -1215,6 +1215,17 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
       {n:'Orangebox',     c:'영국',      cat:'협업·라운지',          url:'https://www.orangebox.com',       bg:'#E35205',mark:'O',  fs:20,fw:'700'},
       {n:'Flokk',         c:'노르웨이',  cat:'지속가능·인체공학',    url:'https://www.flokk.com',           bg:'#004A3F',mark:'F',  fs:20,fw:'700'},
       {n:'Arper',         c:'이탈리아',  cat:'라운지·계약가구',      url:'https://www.arper.com',           bg:'#8B6914',mark:'A',  fs:20,fw:'700'},
+      {n:'Nowy Styl',     c:'폴란드',    cat:'종합 오피스가구',       url:'https://www.nowystyl.com',        bg:'#003366',mark:'NS', fs:14,fw:'700'},
+      {n:'Framery',       c:'핀란드',    cat:'어쿠스틱 부스·포드',   url:'https://www.frameryacoustics.com',bg:'#007F6E',mark:'F',  fs:20,fw:'700'},
+      {n:'Interstuhl',    c:'독일',      cat:'인체공학 워크체어',    url:'https://www.interstuhl.com',      bg:'#003057',mark:'I',  fs:20,fw:'700'},
+      {n:'Renz',          c:'독일',      cat:'오피스 액세서리·리셉션',url:'https://www.renz.de',            bg:'#2C2C2C',mark:'R',  fs:20,fw:'700'},
+      {n:'Walter Knoll',  c:'독일',      cat:'프리미엄 라운지·경영층',url:'https://www.walterknoll.de',     bg:'#111111',mark:'WK', fs:14,fw:'700'},
+      {n:'Abstracta',     c:'스웨덴',    cat:'어쿠스틱·스크린',      url:'https://www.abstracta.se',        bg:'#4A4A4A',mark:'AB', fs:14,fw:'700'},
+      {n:'Lapalma',       c:'이탈리아',  cat:'이탈리안 디자인가구',  url:'https://www.lapalma.it',          bg:'#3D3028',mark:'L',  fs:20,fw:'700'},
+      {n:'Muuto',         c:'덴마크',    cat:'스칸디나비안 디자인',  url:'https://www.muuto.com',           bg:'#4A3728',mark:'M',  fs:20,fw:'700'},
+      {n:'Kettal',        c:'스페인',    cat:'야외·컨트랙트가구',    url:'https://www.kettal.com',          bg:'#8B4513',mark:'K',  fs:20,fw:'700'},
+      {n:'Gumpo',         c:'독일',      cat:'오피스 시스템',         url:'https://www.gumpo.de',            bg:'#1A4020',mark:'G',  fs:20,fw:'700'},
+      {n:'Pedrali',       c:'이탈리아',  cat:'이탈리안 컨트랙트가구',url:'https://www.pedrali.com',         bg:'#C41E3A',mark:'P',  fs:20,fw:'700'},
     ],
     jp:[
       {n:'Okamura',       c:'일본',cat:'워크체어·스마트오피스', url:'https://www.okamura.com',       bg:'#003F7F',mark:'O', fs:20,fw:'700'},

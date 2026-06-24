@@ -35,7 +35,9 @@ REGIONS = {
         "name": "유럽 Europe",
         "color": "#10B981",
         "brands": ["Vitra", "Kinnarps", "Wilkhahn", "Bene", "Sedus",
-                   "Senator Group", "Hay", "Orangebox", "Flokk", "Arper"],
+                   "Senator Group", "Hay", "Orangebox", "Flokk", "Arper",
+                   "Nowy Styl", "Framery", "Interstuhl", "Renz", "Walter Knoll",
+                   "Abstracta", "Lapalma", "Muuto", "Kettal", "Gumpo", "Pedrali"],
         "sec_id": "eu-sec",
     },
     "jp": {
