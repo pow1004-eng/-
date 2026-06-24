@@ -1263,13 +1263,32 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     img.src='';
   }
 
+  // .pi-img 각각에 직접 리스너 — stopPropagation으로 부모 onclick 차단
+  document.querySelectorAll('.pi-img').forEach(function(el){
+    el.addEventListener('click',function(e){
+      e.stopPropagation();
+      var i=el.querySelector('img');
+      if(i)open(i.src);
+    });
+  });
+  // 이후 동적으로 추가되는 .pi-img 대응 (MutationObserver)
+  new MutationObserver(function(muts){
+    muts.forEach(function(mut){
+      mut.addedNodes.forEach(function(node){
+        if(node.nodeType!==1)return;
+        var els=node.classList&&node.classList.contains('pi-img')?[node]:node.querySelectorAll('.pi-img');
+        els.forEach(function(el){
+          el.addEventListener('click',function(e){
+            e.stopPropagation();
+            var i=el.querySelector('img');
+            if(i)open(i.src);
+          });
+        });
+      });
+    });
+  }).observe(document.body,{childList:true,subtree:true});
+
   document.addEventListener('click',function(e){
-    var pi=e.target.closest('.pi-img');
-    if(pi){
-      var i=pi.querySelector('img');
-      if(i){e.stopPropagation();open(i.src);}
-      return;
-    }
     if(lb.classList.contains('on'))close();
   });
   document.addEventListener('keydown',function(e){
