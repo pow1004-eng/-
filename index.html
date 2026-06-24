@@ -1063,6 +1063,21 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
       }
       return '<svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">'+p+'</svg>';
     }
+    // 주목 신제품 리스트 아바타
+    document.querySelectorAll('.pav').forEach(function(el){
+      var pi=el.closest('.pi');
+      if(!pi)return;
+      var pb=pi.querySelector('.pb');
+      if(!pb)return;
+      var brand=pb.textContent.split('·')[0].trim();
+      if(!LOGOS[brand])return;
+      el.style.background='#fff';
+      el.style.border='1px solid #E8E4DF';
+      el.style.borderRadius='9px';
+      el.style.padding='3px';
+      el.innerHTML='<img src="'+LOGOS[brand]+'" style="width:100%;height:100%;object-fit:contain;display:block">';
+    });
+
     document.querySelectorAll('.bc-av').forEach(function(el){
       var top=el.closest('.bc-top');
       if(!top)return;
