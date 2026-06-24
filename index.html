@@ -1044,6 +1044,16 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     'Tendo Mokko':            'logos/tendo.png',
     'Maruni':                 'logos/maruni.png',
     'Askul':                  'logos/askul.png',
+    '퍼시스':                 'logos/fursys.png',
+    '현대리바트':             'logos/livart.png',
+    '코아스':                 'logos/koas.png',
+    '한샘':                   'logos/hanssem.png',
+    '시디즈':                 'logos/sidiz.png',
+    '데스커':                 'logos/desker.png',
+    '파트라':                 'logos/patra.png',
+    '베스툴':                 'logos/bestuhl.png',
+    '에넥스':                 'logos/enex.png',
+    '동연디자인':             'logos/donyeon.png',
   };
   (function(){
     var L={
@@ -1174,8 +1184,8 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
   };
   function mkBLogo(b){
     var s=40,c=b.color||'#fff';
-    if(b.fursys)return '<div class="bdc-av2" style="background:#fff;border:1px solid #E8E4DF;padding:5px"><img src="data:image/png;base64,'+FURSYS_B64+'" style="height:14px;mix-blend-mode:multiply" alt="FURSYS"></div>';
     if(LOGOS[b.n])return '<div class="bdc-av2" style="background:#fff;border:1px solid #E8E4DF;padding:4px"><img src="'+LOGOS[b.n]+'" style="width:100%;height:100%;object-fit:contain;display:block"></div>';
+    if(b.fursys)return '<div class="bdc-av2" style="background:#fff;border:1px solid #E8E4DF;padding:5px"><img src="data:image/png;base64,'+FURSYS_B64+'" style="height:14px;mix-blend-mode:multiply" alt="FURSYS"></div>';
     var p='<rect width="'+s+'" height="'+s+'" fill="'+b.bg+'"/>';
     if(b.dots){p+='<circle cx="29" cy="8" r="3.2" fill="white" opacity="0.7"/><circle cx="34" cy="15" r="2.4" fill="white" opacity="0.45"/>';}
     if(b.lines){
