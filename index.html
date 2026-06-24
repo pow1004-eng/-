@@ -1012,6 +1012,17 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
   };
 
   // Brand logo marks
+  // 로고 이미지 파일 매핑 (logos/ 폴더에 파일 추가 시 여기에 등록)
+  var LOGOS={
+    'Steelcase':              'logos/steelcase.png',
+    'Herman Miller':          'logos/hermanmiller.png',
+    'Haworth':                'logos/haworth.png',
+    'Knoll':                  'logos/knoll.png',
+    'Teknion':                'logos/teknion.png',
+    'Humanscale':             'logos/humanscale.png',
+    'Kimball':                'logos/kimball.png',
+    'Global Furniture Group': 'logos/global.png',
+  };
   (function(){
     var L={
       'Herman Miller': {bg:'#D35F23',lines:['herman','miller']},
@@ -1057,7 +1068,15 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
       if(!top)return;
       var nm=top.querySelector('.bc-brand');
       if(!nm)return;
-      var lg=L[nm.textContent.trim()];
+      var name=nm.textContent.trim();
+      if(LOGOS[name]){
+        el.style.background='#fff';
+        el.style.border='1px solid #E8E4DF';
+        el.style.padding='4px';
+        el.innerHTML='<img src="'+LOGOS[name]+'" style="width:100%;height:100%;object-fit:contain;display:block">';
+        return;
+      }
+      var lg=L[name];
       if(!lg)return;
       el.style.background=lg.bg;
       el.innerHTML=mk(lg);
@@ -1119,6 +1138,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
   function mkBLogo(b){
     var s=40,c=b.color||'#fff';
     if(b.fursys)return '<div class="bdc-av2" style="background:#fff;border:1px solid #E8E4DF;padding:5px"><img src="data:image/png;base64,'+FURSYS_B64+'" style="height:14px;mix-blend-mode:multiply" alt="FURSYS"></div>';
+    if(LOGOS[b.n])return '<div class="bdc-av2" style="background:#fff;border:1px solid #E8E4DF;padding:4px"><img src="'+LOGOS[b.n]+'" style="width:100%;height:100%;object-fit:contain;display:block"></div>';
     var p='<rect width="'+s+'" height="'+s+'" fill="'+b.bg+'"/>';
     if(b.dots){p+='<circle cx="29" cy="8" r="3.2" fill="white" opacity="0.7"/><circle cx="34" cy="15" r="2.4" fill="white" opacity="0.45"/>';}
     if(b.lines){
