@@ -216,7 +216,18 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
 .pi[onclick]{cursor:pointer}
 .pi[onclick]:hover .pn{color:var(--a)}
 .bc.hl{border-color:var(--a);box-shadow:0 0 0 2px var(--ab),var(--sh);transition:border-color .15s,box-shadow .15s}
-@media print{.sb,.tb,.sbar{display:none}.main{overflow:visible}.cnt{overflow:visible;padding:12px}.gmain,.gbot,.reg-grid{grid-template-columns:1fr}.krow{grid-template-columns:repeat(3,1fr)}}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sb,.tb,.sbar,.bd-overlay{display:none!important}
+  html,body{height:auto!important;overflow:visible!important}
+  .app{height:auto!important;overflow:visible!important;display:block!important}
+  .main{height:auto!important;overflow:visible!important;display:block!important}
+  .cnt{height:auto!important;overflow:visible!important;padding:12px;display:flex!important;flex-direction:column}
+  .gmain,.gbot,.reg-grid{grid-template-columns:1fr}
+  .krow{grid-template-columns:repeat(3,1fr)}
+  .card{break-inside:avoid;page-break-inside:avoid}
+  #view-brands{display:none!important}
+}
 @media(prefers-reduced-motion:reduce){*{transition:none !important}}
 
 /* BRAND DIRECTORY VIEW */
