@@ -80,6 +80,11 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
 .bd-item.open .bd-item-body{display:block}
 .bd-del{font-size:11px;color:var(--t3);background:none;border:none;cursor:pointer;margin-left:6px;padding:2px 4px;border-radius:4px}
 .bd-del:hover{background:#FEE2E2;color:#DC2626}
+.bd-admin-btn{font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;border:1px solid var(--bd);background:var(--g);color:var(--t2);cursor:pointer;font-family:inherit;transition:all .12s}
+.bd-admin-btn:hover{border-color:var(--a);color:var(--a)}
+.bd-flt{font-size:12px;font-weight:600;padding:4px 10px;border-radius:6px;border:1px solid var(--bd);background:#fff;color:var(--t2);cursor:pointer;font-family:inherit;transition:all .12s}
+.bd-flt.on{background:var(--a);color:#fff;border-color:var(--a)}
+.bd-flt:hover:not(.on){background:var(--g)}
 
 /* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
@@ -1012,6 +1017,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
 </div><!-- end main -->
 </div><!-- end app -->
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
 (function(){
   var c=document.getElementById('gc');
@@ -1412,93 +1418,144 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
   });
 })();
 
-// ── 게시판 ──────────────────────────────────────────
+// ── 게시판 (Supabase) ──────────────────────────────────
 (function(){
-  var STORE='fursys_board_v1';
-  function load(){try{return JSON.parse(localStorage.getItem(STORE)||'[]');}catch(e){return[];}}
-  function save(d){localStorage.setItem(STORE,JSON.stringify(d));}
-  function ts(){var n=new Date();return n.getFullYear()+'.'+(n.getMonth()+1).toString().padStart(2,'0')+'.'+n.getDate().toString().padStart(2,'0');}
-
-  window.showBoard=function(){
-    document.getElementById('bd-overlay').classList.add('open');
-    renderList();
+  // ▼ 설정 ─ Supabase 프로젝트 정보 입력
+  var CFG = {
+    url:     'https://khcfqgaiucggrlhtlivn.supabase.co',
+    key:     'sb_publishable_c8IQPyeyZIZB3VrcBWCoIw_Iqs4pwUJ',
+    adminPw: 'fursys2026'              // 관리자 비밀번호 (원하면 변경)
   };
-  window.closeBoard=function(){
+
+  var sbClient = null;
+  var isAdmin = false;
+
+  function getSB(){
+    if(!sbClient){
+      try{ sbClient = window.supabase.createClient(CFG.url, CFG.key); }
+      catch(e){ alert('Supabase를 불러오지 못했습니다.\n네트워크 연결을 확인해 주세요.'); return null; }
+    }
+    return sbClient;
+  }
+
+  window.showBoard = function(){
+    document.getElementById('bd-overlay').classList.add('open');
+    if(isAdmin) loadAdminPosts();
+  };
+  window.closeBoard = function(){
     document.getElementById('bd-overlay').classList.remove('open');
   };
 
-  window.submitPost=function(){
-    var cat=document.getElementById('bd-cat').value;
-    var title=document.getElementById('bd-title').value.trim();
-    var content=document.getElementById('bd-content').value.trim();
-    if(!title){alert('제목을 입력해 주세요.');return;}
-    var posts=load();
-    posts.unshift({id:Date.now(),cat:cat,title:title,content:content,date:ts(),status:'wait'});
-    save(posts);
-    document.getElementById('bd-title').value='';
-    document.getElementById('bd-content').value='';
-    renderList();
-  };
-
-  window.togglePost=function(id){
-    var el=document.getElementById('bdi-'+id);
-    if(el)el.classList.toggle('open');
-  };
-
-  window.changeStatus=function(e,id){
-    e.stopPropagation();
-    var posts=load();
-    var p=posts.find(function(x){return x.id===id;});
-    if(!p)return;
-    var order=['wait','prog','done'];
-    p.status=order[(order.indexOf(p.status)+1)%3];
-    save(posts);
-    renderList();
-  };
-
-  window.deletePost=function(e,id){
-    e.stopPropagation();
-    if(!confirm('삭제하시겠습니까?'))return;
-    var posts=load().filter(function(x){return x.id!==id;});
-    save(posts);
-    renderList();
-  };
-
-  function stClass(s){return s==='wait'?'wait':s==='prog'?'prog':'done';}
-  function stLabel(s){return s==='wait'?'대기중':s==='prog'?'처리중':'완료';}
-  function catClass(c){return c==='bug'?'bug':c==='imp'?'imp':'etc';}
-  function catLabel(c){return c==='bug'?'🐛 오류':c==='imp'?'💡 개선요청':'📝 기타';}
-
-  function renderList(){
-    var posts=load();
-    var el=document.getElementById('bd-list');
-    var cnt=document.getElementById('bd-cnt');
-    cnt.textContent=posts.length+'건';
-    if(!posts.length){
-      el.innerHTML='<div class="bd-empty">등록된 항목이 없습니다.</div>';
+  window.toggleAdmin = function(){
+    if(isAdmin){
+      isAdmin = false;
+      document.getElementById('bd-pub').style.display = '';
+      document.getElementById('bd-adm').style.display = 'none';
+      document.getElementById('bd-adm-btn').textContent = '🔐 관리자';
       return;
     }
-    el.innerHTML=posts.map(function(p){
-      return '<div class="bd-item" id="bdi-'+p.id+'" onclick="togglePost('+p.id+')">'+
-        '<div class="bd-item-top">'+
-        '<span class="bd-cat '+catClass(p.cat)+'">'+catLabel(p.cat)+'</span>'+
-        '<span class="bd-item-title">'+escHtml(p.title)+'</span>'+
-        '<button class="bd-st '+stClass(p.status)+'" onclick="changeStatus(event,'+p.id+')">'+stLabel(p.status)+'</button>'+
-        '<button class="bd-del" onclick="deletePost(event,'+p.id+')">✕</button>'+
-        '</div>'+
-        '<div class="bd-item-meta">'+p.date+'</div>'+
-        (p.content?'<div class="bd-item-body">'+escHtml(p.content)+'</div>':'')+
-        '</div>';
-    }).join('');
+    var pw = prompt('관리자 비밀번호:');
+    if(pw !== CFG.adminPw){ if(pw !== null) alert('비밀번호가 틀렸습니다.'); return; }
+    isAdmin = true;
+    document.getElementById('bd-pub').style.display = 'none';
+    document.getElementById('bd-adm').style.display = '';
+    document.getElementById('bd-adm-btn').textContent = '📝 제출폼';
+    document.getElementById('bd-filter').value = 'all';
+    document.querySelectorAll('.bd-flt').forEach(function(b){ b.classList.remove('on'); });
+    document.querySelector('.bd-flt[data-v="all"]').classList.add('on');
+    loadAdminPosts();
+  };
+
+  window.submitPost = async function(){
+    var cat = document.getElementById('bd-cat').value;
+    var title = document.getElementById('bd-title').value.trim();
+    var content = document.getElementById('bd-content').value.trim();
+    if(!title){ alert('제목을 입력해 주세요.'); return; }
+    var sb = getSB(); if(!sb) return;
+    var btn = document.querySelector('.bd-sub');
+    btn.disabled = true; btn.textContent = '접수 중...';
+    try{
+      var res = await sb.from('board_posts').insert({category:cat, title:title, content:content, status:'wait'});
+      if(res.error) throw res.error;
+      document.getElementById('bd-title').value = '';
+      document.getElementById('bd-content').value = '';
+      var ok = document.getElementById('bd-ok');
+      ok.style.display = ''; setTimeout(function(){ ok.style.display = 'none'; }, 3000);
+    } catch(e){
+      alert('오류: ' + e.message + '\n\nSupabase URL/Key 설정을 확인해 주세요.');
+    }
+    btn.disabled = false; btn.textContent = '접수하기';
+  };
+
+  window.changeStatus = async function(e, id, cur){
+    e.stopPropagation();
+    var sb = getSB(); if(!sb) return;
+    var order = ['wait','prog','done'];
+    var next = order[(order.indexOf(cur)+1) % 3];
+    await sb.from('board_posts').update({status:next}).eq('id', id);
+    loadAdminPosts();
+  };
+
+  window.deletePost = async function(e, id){
+    e.stopPropagation();
+    if(!confirm('삭제하시겠습니까?')) return;
+    var sb = getSB(); if(!sb) return;
+    await sb.from('board_posts').delete().eq('id', id);
+    loadAdminPosts();
+  };
+
+  window.filterPosts = function(val, el){
+    document.querySelectorAll('.bd-flt').forEach(function(b){ b.classList.remove('on'); });
+    el.classList.add('on');
+    document.getElementById('bd-filter').value = val;
+    loadAdminPosts();
+  };
+
+  window.togglePost = function(id){
+    var el = document.getElementById('bdi-'+id);
+    if(el) el.classList.toggle('open');
+  };
+
+  async function loadAdminPosts(){
+    var list = document.getElementById('bd-adm-list');
+    var cnt = document.getElementById('bd-adm-cnt');
+    list.innerHTML = '<div class="bd-empty">불러오는 중...</div>';
+    var sb = getSB(); if(!sb) return;
+    try{
+      var filter = document.getElementById('bd-filter').value;
+      var q = sb.from('board_posts').select('*').order('created_at',{ascending:false});
+      if(filter !== 'all') q = q.eq('status', filter);
+      var res = await q;
+      if(res.error) throw res.error;
+      var data = res.data;
+      cnt.textContent = data.length+'건';
+      if(!data.length){ list.innerHTML = '<div class="bd-empty">접수된 항목이 없습니다.</div>'; return; }
+      list.innerHTML = data.map(function(p){
+        var dt = new Date(p.created_at);
+        var ds = dt.getFullYear()+'.'+(dt.getMonth()+1).toString().padStart(2,'0')+'.'+dt.getDate().toString().padStart(2,'0')+' '+dt.getHours().toString().padStart(2,'0')+':'+dt.getMinutes().toString().padStart(2,'0');
+        return '<div class="bd-item" id="bdi-'+p.id+'" onclick="togglePost('+p.id+')">'+
+          '<div class="bd-item-top">'+
+          '<span class="bd-cat '+catClass(p.category)+'">'+catLabel(p.category)+'</span>'+
+          '<span class="bd-item-title">'+escHtml(p.title)+'</span>'+
+          '<button class="bd-st '+stClass(p.status)+'" onclick="changeStatus(event,'+p.id+',\''+p.status+'\')">'+stLabel(p.status)+'</button>'+
+          '<button class="bd-del" onclick="deletePost(event,'+p.id+')">✕</button>'+
+          '</div>'+
+          '<div class="bd-item-meta">'+ds+'</div>'+
+          (p.content ? '<div class="bd-item-body">'+escHtml(p.content)+'</div>' : '')+
+          '</div>';
+      }).join('');
+    } catch(e){
+      list.innerHTML = '<div class="bd-empty">오류: '+escHtml(e.message)+'</div>';
+    }
   }
 
-  function escHtml(s){
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
+  function stClass(s){ return s==='wait'?'wait':s==='prog'?'prog':'done'; }
+  function stLabel(s){ return s==='wait'?'대기중':s==='prog'?'처리중':'완료'; }
+  function catClass(c){ return c==='bug'?'bug':c==='imp'?'imp':'etc'; }
+  function catLabel(c){ return c==='bug'?'🐛 오류':c==='imp'?'💡 개선요청':'📝 기타'; }
+  function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape')closeBoard();
-  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeBoard(); });
 })();
 </script>
 
@@ -1507,13 +1564,17 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
   <div class="bd-modal">
     <div class="bd-head">
       <h2>📋 오류개선 및 요청사항</h2>
-      <button class="bd-close" onclick="closeBoard()">✕</button>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="bd-admin-btn" id="bd-adm-btn" onclick="toggleAdmin()">🔐 관리자</button>
+        <button class="bd-close" onclick="closeBoard()">✕</button>
+      </div>
     </div>
-    <div class="bd-body">
+    <!-- 공개 제출 폼 -->
+    <div id="bd-pub" class="bd-body">
       <div class="bd-write">
-        <div class="bd-write-title">✏️ 새 항목 등록</div>
+        <div class="bd-write-title">✏️ 요청사항 접수</div>
         <div class="bd-row">
-          <select class="bd-sel bd-inp" id="bd-cat" style="width:auto">
+          <select class="bd-sel" id="bd-cat">
             <option value="bug">🐛 오류</option>
             <option value="imp">💡 개선요청</option>
             <option value="etc">📝 기타</option>
@@ -1521,13 +1582,23 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
           <input class="bd-inp" id="bd-title" type="text" placeholder="제목을 입력하세요">
         </div>
         <textarea class="bd-inp bd-ta" id="bd-content" placeholder="내용을 입력하세요 (선택)"></textarea>
-        <button class="bd-sub" onclick="submitPost()">등록하기</button>
+        <button class="bd-sub" onclick="submitPost()">접수하기</button>
+        <div id="bd-ok" style="display:none;margin-top:10px;text-align:center;color:#059669;font-size:14px;font-weight:600">✅ 접수되었습니다! 검토 후 반영하겠습니다.</div>
       </div>
-      <div class="bd-list-head">
-        <span class="bd-list-label">등록 목록</span>
-        <span class="bd-cnt" id="bd-cnt">0건</span>
+    </div>
+    <!-- 관리자 뷰 -->
+    <div id="bd-adm" class="bd-body" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div style="display:flex;gap:6px">
+          <button class="bd-flt on" data-v="all" onclick="filterPosts('all',this)">전체</button>
+          <button class="bd-flt" data-v="wait" onclick="filterPosts('wait',this)">대기중</button>
+          <button class="bd-flt" data-v="prog" onclick="filterPosts('prog',this)">처리중</button>
+          <button class="bd-flt" data-v="done" onclick="filterPosts('done',this)">완료</button>
+        </div>
+        <span class="bd-cnt" id="bd-adm-cnt">0건</span>
       </div>
-      <div id="bd-list"></div>
+      <input type="hidden" id="bd-filter" value="all">
+      <div id="bd-adm-list"></div>
     </div>
   </div>
 </div>
