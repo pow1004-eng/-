@@ -28,7 +28,8 @@ REGIONS = {
         "color": "#3B82F6",
         "brands": ["Steelcase", "Herman Miller", "Haworth", "Knoll", "Teknion",
                    "Allsteel", "Humanscale", "HON", "Kimball", "Global Furniture Group",
-                   "Watson", "Davis Furniture", "OFS", "KI"],
+                   "Watson", "Davis Furniture", "OFS", "KI",
+                   "Nienkämper", "Narbutas"],
         "sec_id": "na-sec",
     },
     "eu": {
