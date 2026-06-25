@@ -25,15 +25,18 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
 .sb-srch-ic{color:var(--t3);font-size:14px}
 .sb-srch input{border:none;background:none;outline:none;font-size:15px;color:var(--t);width:100%}
 .sb-srch input::placeholder{color:var(--t3)}
-.sb-nav{flex:1;padding:6px 8px}
-.sb-grp{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);padding:10px 8px 4px}
+.sb-nav{flex:1;padding:8px 8px}
+.sb-grp{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--t3);padding:4px 10px 4px;display:flex;align-items:center;gap:6px}
+.sb-grp::before{content:'';flex:none;width:14px;height:1px;background:var(--bd)}
+.sb-grp::after{content:'';flex:1;height:1px;background:var(--bd)}
 .sbl{display:flex;align-items:center;gap:9px;padding:7px 9px 7px 12px;border-radius:8px;cursor:pointer;color:var(--t2);font-size:15px;font-weight:500;border:none;border-left:2.5px solid transparent;background:none;width:100%;text-align:left;transition:background .12s,color .12s}
 .sbl:hover{background:var(--g);color:var(--t)}
 .sbl.on{background:var(--ab);color:var(--a);border-left-color:var(--a);font-weight:600}
-.sbl-ic{width:15px;text-align:center;font-size:16px;flex-shrink:0}
-.sbl-cnt{margin-left:auto;background:var(--g);color:var(--t3);font-size:13px;font-weight:600;padding:1px 6px;border-radius:8px}
+.sbl-ic{width:15px;text-align:center;font-size:15px;flex-shrink:0}
+.sbl-cnt{margin-left:auto;background:var(--g);color:var(--t3);font-size:12px;font-weight:600;padding:1px 6px;border-radius:6px}
 .sbl.on .sbl-cnt{background:var(--ab);color:var(--a)}
-.sb-div{height:1px;background:var(--bd);margin:5px 4px}
+.sbl-sub{padding-left:28px;font-size:14px;padding-top:5px;padding-bottom:5px}
+.sb-div{height:8px}
 .sb-user{padding:12px 14px;border-top:1px solid var(--bd);display:flex;align-items:center;gap:9px;margin-top:auto}
 .sb-av{width:30px;height:30px;border-radius:50%;background:var(--a);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .sb-uname{font-size:15px;font-weight:600;line-height:1.2}
@@ -212,15 +215,19 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
   <nav class="sb-nav">
     <button class="sbl on" id="nav-dash" onclick="showView('dash')"><span class="sbl-ic">⊞</span>대시보드</button>
     <button class="sbl" id="nav-brands" onclick="showView('brands')"><span class="sbl-ic">◎</span>브랜드<span class="sbl-cnt">55</span></button>
-    <button class="sbl"><span class="sbl-ic">↗</span>전체 리포트</button>
-    <div class="sb-grp">지역별</div>
-    <button class="sbl" onclick="sc('na-sec')"><span class="sbl-ic" style="color:var(--na)">●</span>북미<span class="sbl-cnt">10</span></button>
-    <button class="sbl" onclick="sc('eu-sec')"><span class="sbl-ic" style="color:var(--eu)">●</span>유럽<span class="sbl-cnt">7</span></button>
-    <button class="sbl" onclick="sc('jp-sec')"><span class="sbl-ic" style="color:var(--jp)">●</span>일본<span class="sbl-cnt">6</span></button>
-    <button class="sbl" onclick="sc('kr-sec')"><span class="sbl-ic" style="color:var(--kr)">●</span>국내<span class="sbl-cnt">4</span></button>
     <div class="sb-div"></div>
+    <div class="sb-grp">지역별</div>
+    <button class="sbl sbl-sub" onclick="sc('na-sec')"><span class="sbl-ic" style="color:var(--na)">●</span>북미<span class="sbl-cnt">10</span></button>
+    <button class="sbl sbl-sub" onclick="sc('eu-sec')"><span class="sbl-ic" style="color:var(--eu)">●</span>유럽<span class="sbl-cnt">7</span></button>
+    <button class="sbl sbl-sub" onclick="sc('jp-sec')"><span class="sbl-ic" style="color:var(--jp)">●</span>일본<span class="sbl-cnt">6</span></button>
+    <button class="sbl sbl-sub" onclick="sc('kr-sec')"><span class="sbl-ic" style="color:var(--kr)">●</span>국내<span class="sbl-cnt">4</span></button>
+    <div class="sb-div"></div>
+    <div class="sb-grp">분석</div>
     <button class="sbl" onclick="sc('trends-sec')"><span class="sbl-ic">↻</span>트렌드 분석</button>
     <button class="sbl" onclick="sc('insights-sec')"><span class="sbl-ic">📌</span>퍼시스 시사점<span class="sbl-cnt">5</span></button>
+    <div class="sb-div"></div>
+    <div class="sb-grp">도구</div>
+    <button class="sbl"><span class="sbl-ic">↗</span>전체 리포트</button>
     <button class="sbl" onclick="window.print()"><span class="sbl-ic">↓</span>내보내기</button>
   </nav>
   <div class="sb-user">
