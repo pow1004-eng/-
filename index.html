@@ -216,7 +216,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     <button class="sbl on" id="nav-dash" onclick="showView('dash')"><span class="sbl-ic">⊞</span>대시보드</button>
     <button class="sbl" id="nav-brands" onclick="showView('brands')"><span class="sbl-ic">◎</span>브랜드 홈페이지<span class="sbl-cnt">55</span></button>
     <div class="sb-div"></div>
-    <div class="sb-grp">신제품 리포트</div>
+    <button class="sbl" id="nav-report" onclick="showView('dash')"><span class="sbl-ic">◈</span>신제품 리포트</button>
     <button class="sbl sbl-sub" onclick="sc('na-sec')"><span class="sbl-ic" style="color:var(--na)">●</span>북미<span class="sbl-cnt">7</span></button>
     <button class="sbl sbl-sub" onclick="sc('eu-sec')"><span class="sbl-ic" style="color:var(--eu)">●</span>유럽<span class="sbl-cnt">6</span></button>
     <button class="sbl sbl-sub" onclick="sc('jp-sec')"><span class="sbl-ic" style="color:var(--jp)">●</span>일본<span class="sbl-cnt">6</span></button>
@@ -1015,6 +1015,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     var dash=document.getElementById('view-dash');
     var brands=document.getElementById('view-brands');
     var navD=document.getElementById('nav-dash');
+    var navR=document.getElementById('nav-report');
     var navB=document.getElementById('nav-brands');
     var tbT=document.querySelector('.tb-t');
     var tbS=document.querySelector('.tb-s');
@@ -1022,14 +1023,16 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
       dash.style.display='none';
       brands.style.display='';
       navD.classList.remove('on');
+      navR.classList.remove('on');
       navB.classList.add('on');
       tbT.textContent='브랜드 디렉토리';
-      tbS.textContent='4개 지역 40개 글로벌 브랜드 모니터링';
+      tbS.textContent='4개 지역 55개 글로벌 브랜드 모니터링';
       if(!brandsRendered){renderBrands();brandsRendered=true;}
     } else {
       brands.style.display='none';
       dash.style.display='';
       navD.classList.add('on');
+      navR.classList.add('on');
       navB.classList.remove('on');
       tbT.textContent='글로벌 신제품 리포트';
       tbS.textContent='2026년 6월 수집 · 4개 지역 55개 브랜드 모니터링';
