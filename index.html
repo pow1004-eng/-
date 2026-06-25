@@ -45,7 +45,7 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
 .bd-overlay{display:none;position:fixed;inset:0;background:rgba(28,25,23,.45);z-index:1000;align-items:center;justify-content:center}
 .bd-overlay.open{display:flex}
 .bd-modal{background:#fff;border-radius:16px;width:660px;max-width:95vw;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(28,25,23,.18)}
-.bd-head{padding:20px 24px 16px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.bd-head{padding:20px 24px 16px;border-bottom:1px solid var(--bd);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
 .bd-head h2{font-size:17px;font-weight:700;letter-spacing:-.02em}
 .bd-close{border:none;background:none;cursor:pointer;font-size:20px;color:var(--t3);line-height:1;padding:4px}
 .bd-close:hover{color:var(--t)}
@@ -85,6 +85,16 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
 .bd-flt{font-size:12px;font-weight:600;padding:4px 10px;border-radius:6px;border:1px solid var(--bd);background:#fff;color:var(--t2);cursor:pointer;font-family:inherit;transition:all .12s}
 .bd-flt.on{background:var(--a);color:#fff;border-color:var(--a)}
 .bd-flt:hover:not(.on){background:var(--g)}
+#bd-main{flex:1;overflow:hidden;flex-direction:column}
+.bd-tabs{display:flex;border-bottom:1px solid var(--bd);flex-shrink:0}
+.bd-tab{flex:1;padding:12px;font-size:14px;font-weight:600;color:var(--t3);background:none;border:none;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .12s}
+.bd-tab.on{color:var(--a);border-bottom-color:var(--a)}
+.bd-tab:hover:not(.on){color:var(--t2)}
+.bd-user-label{font-size:12px;color:var(--t2);font-weight:500}
+.bd-logout-btn{font-size:11px;color:var(--t3);background:none;border:1px solid var(--bd);border-radius:5px;padding:2px 7px;cursor:pointer;font-family:inherit;margin-left:6px;transition:all .12s}
+.bd-logout-btn:hover{color:var(--t);border-color:var(--t2)}
+.bd-cnt-badge{font-size:11px;font-weight:600;background:var(--g);color:var(--t3);border-radius:10px;padding:1px 6px;margin-left:4px}
+.bd-author{font-size:11px;color:var(--t3);background:var(--g);border-radius:4px;padding:1px 6px;flex-shrink:0;white-space:nowrap}
 
 /* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
@@ -1418,38 +1428,93 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
   });
 })();
 
-// ── 게시판 (Supabase) ──────────────────────────────────
+// ── 게시판 (Supabase + 로그인) ──────────────────────────
 (function(){
-  // ▼ 설정 ─ Supabase 프로젝트 정보 입력
   var CFG = {
     url:     'https://khcfqgaiucggrlhtlivn.supabase.co',
     key:     'sb_publishable_c8IQPyeyZIZB3VrcBWCoIw_Iqs4pwUJ',
-    adminPw: 'fursys2026'              // 관리자 비밀번호 (원하면 변경)
+    adminPw: 'fursys2026'
   };
 
   var sbClient = null;
   var isAdmin = false;
+  var currentUser = null;
 
   function getSB(){
     if(!sbClient){
       try{ sbClient = window.supabase.createClient(CFG.url, CFG.key); }
-      catch(e){ alert('Supabase를 불러오지 못했습니다.\n네트워크 연결을 확인해 주세요.'); return null; }
+      catch(e){ alert('Supabase를 불러오지 못했습니다.'); return null; }
     }
     return sbClient;
   }
 
+  function initUser(){
+    try{ currentUser = JSON.parse(localStorage.getItem('fursys_user')||'null'); }catch(e){ currentUser=null; }
+  }
+
+  function showLoginView(){
+    document.getElementById('bd-login').style.display = '';
+    document.getElementById('bd-main').style.display = 'none';
+    document.getElementById('bd-adm').style.display = 'none';
+    document.getElementById('bd-user-info').style.display = 'none';
+    document.getElementById('bd-adm-btn').style.display = 'none';
+  }
+
+  function showMainView(){
+    isAdmin = false;
+    document.getElementById('bd-login').style.display = 'none';
+    document.getElementById('bd-main').style.display = 'flex';
+    document.getElementById('bd-adm').style.display = 'none';
+    document.getElementById('bd-user-info').style.display = '';
+    document.getElementById('bd-adm-btn').style.display = '';
+    document.getElementById('bd-adm-btn').textContent = '🔐 관리자';
+    var label = currentUser.name + (currentUser.dept ? ' · '+currentUser.dept : '');
+    document.getElementById('bd-user-label').textContent = label;
+    showTab('write');
+  }
+
   window.showBoard = function(){
+    initUser();
     document.getElementById('bd-overlay').classList.add('open');
-    if(isAdmin) loadAdminPosts();
+    if(!currentUser){ showLoginView(); }
+    else { showMainView(); loadMyPosts(); }
   };
+
   window.closeBoard = function(){
     document.getElementById('bd-overlay').classList.remove('open');
+  };
+
+  window.bdLogin = function(){
+    var name = document.getElementById('bd-login-name').value.trim();
+    var dept = document.getElementById('bd-login-dept').value.trim();
+    if(!name){ alert('이름을 입력해 주세요.'); return; }
+    currentUser = {name:name, dept:dept};
+    localStorage.setItem('fursys_user', JSON.stringify(currentUser));
+    showMainView();
+    loadMyPosts();
+  };
+
+  window.bdLogout = function(){
+    currentUser = null;
+    localStorage.removeItem('fursys_user');
+    isAdmin = false;
+    showLoginView();
+    document.getElementById('bd-login-name').value = '';
+    document.getElementById('bd-login-dept').value = '';
+  };
+
+  window.showTab = function(tab){
+    document.querySelectorAll('.bd-tab').forEach(function(t){ t.classList.remove('on'); });
+    document.querySelector('.bd-tab[data-tab="'+tab+'"]').classList.add('on');
+    document.getElementById('bd-write-sec').style.display = tab==='write' ? '' : 'none';
+    document.getElementById('bd-mine-sec').style.display = tab==='mine' ? '' : 'none';
+    if(tab==='mine') loadMyPosts();
   };
 
   window.toggleAdmin = function(){
     if(isAdmin){
       isAdmin = false;
-      document.getElementById('bd-pub').style.display = '';
+      document.getElementById('bd-main').style.display = 'flex';
       document.getElementById('bd-adm').style.display = 'none';
       document.getElementById('bd-adm-btn').textContent = '🔐 관리자';
       return;
@@ -1457,9 +1522,9 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     var pw = prompt('관리자 비밀번호:');
     if(pw !== CFG.adminPw){ if(pw !== null) alert('비밀번호가 틀렸습니다.'); return; }
     isAdmin = true;
-    document.getElementById('bd-pub').style.display = 'none';
+    document.getElementById('bd-main').style.display = 'none';
     document.getElementById('bd-adm').style.display = '';
-    document.getElementById('bd-adm-btn').textContent = '📝 제출폼';
+    document.getElementById('bd-adm-btn').textContent = '📝 일반화면';
     document.getElementById('bd-filter').value = 'all';
     document.querySelectorAll('.bd-flt').forEach(function(b){ b.classList.remove('on'); });
     document.querySelector('.bd-flt[data-v="all"]').classList.add('on');
@@ -1475,17 +1540,47 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
     var btn = document.querySelector('.bd-sub');
     btn.disabled = true; btn.textContent = '접수 중...';
     try{
-      var res = await sb.from('board_posts').insert({category:cat, title:title, content:content, status:'wait'});
+      var res = await sb.from('board_posts').insert({
+        category:cat, title:title, content:content, status:'wait',
+        author:currentUser.name, dept:currentUser.dept||''
+      });
       if(res.error) throw res.error;
       document.getElementById('bd-title').value = '';
       document.getElementById('bd-content').value = '';
       var ok = document.getElementById('bd-ok');
-      ok.style.display = ''; setTimeout(function(){ ok.style.display = 'none'; }, 3000);
-    } catch(e){
-      alert('오류: ' + e.message + '\n\nSupabase URL/Key 설정을 확인해 주세요.');
-    }
+      ok.style.display = '';
+      setTimeout(function(){ ok.style.display='none'; showTab('mine'); }, 1500);
+    } catch(e){ alert('오류: '+e.message); }
     btn.disabled = false; btn.textContent = '접수하기';
   };
+
+  async function loadMyPosts(){
+    var list = document.getElementById('bd-mine-list');
+    var badge = document.getElementById('bd-mine-cnt');
+    list.innerHTML = '<div class="bd-empty">불러오는 중...</div>';
+    var sb = getSB(); if(!sb) return;
+    try{
+      var res = await sb.from('board_posts').select('*')
+        .eq('author', currentUser.name).order('created_at',{ascending:false});
+      if(res.error) throw res.error;
+      var data = res.data;
+      badge.textContent = data.length || '';
+      if(!data.length){ list.innerHTML = '<div class="bd-empty">접수한 항목이 없습니다.</div>'; return; }
+      list.innerHTML = data.map(function(p){
+        var dt = new Date(p.created_at);
+        var ds = dt.getFullYear()+'.'+(dt.getMonth()+1).toString().padStart(2,'0')+'.'+dt.getDate().toString().padStart(2,'0')+' '+dt.getHours().toString().padStart(2,'0')+':'+dt.getMinutes().toString().padStart(2,'0');
+        return '<div class="bd-item" onclick="this.classList.toggle(\'open\')">'+
+          '<div class="bd-item-top">'+
+          '<span class="bd-cat '+catClass(p.category)+'">'+catLabel(p.category)+'</span>'+
+          '<span class="bd-item-title">'+escHtml(p.title)+'</span>'+
+          '<span class="bd-st '+stClass(p.status)+'" style="cursor:default">'+stLabel(p.status)+'</span>'+
+          '</div>'+
+          '<div class="bd-item-meta">'+ds+'</div>'+
+          (p.content?'<div class="bd-item-body">'+escHtml(p.content)+'</div>':'')+
+          '</div>';
+      }).join('');
+    } catch(e){ list.innerHTML = '<div class="bd-empty">오류: '+escHtml(e.message)+'</div>'; }
+  }
 
   window.changeStatus = async function(e, id, cur){
     e.stopPropagation();
@@ -1533,20 +1628,20 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
       list.innerHTML = data.map(function(p){
         var dt = new Date(p.created_at);
         var ds = dt.getFullYear()+'.'+(dt.getMonth()+1).toString().padStart(2,'0')+'.'+dt.getDate().toString().padStart(2,'0')+' '+dt.getHours().toString().padStart(2,'0')+':'+dt.getMinutes().toString().padStart(2,'0');
+        var auth = escHtml(p.author+(p.dept?' · '+p.dept:''));
         return '<div class="bd-item" id="bdi-'+p.id+'" onclick="togglePost('+p.id+')">'+
           '<div class="bd-item-top">'+
           '<span class="bd-cat '+catClass(p.category)+'">'+catLabel(p.category)+'</span>'+
           '<span class="bd-item-title">'+escHtml(p.title)+'</span>'+
+          '<span class="bd-author">'+auth+'</span>'+
           '<button class="bd-st '+stClass(p.status)+'" onclick="changeStatus(event,'+p.id+',\''+p.status+'\')">'+stLabel(p.status)+'</button>'+
           '<button class="bd-del" onclick="deletePost(event,'+p.id+')">✕</button>'+
           '</div>'+
           '<div class="bd-item-meta">'+ds+'</div>'+
-          (p.content ? '<div class="bd-item-body">'+escHtml(p.content)+'</div>' : '')+
+          (p.content?'<div class="bd-item-body">'+escHtml(p.content)+'</div>':'')+
           '</div>';
       }).join('');
-    } catch(e){
-      list.innerHTML = '<div class="bd-empty">오류: '+escHtml(e.message)+'</div>';
-    }
+    } catch(e){ list.innerHTML = '<div class="bd-empty">오류: '+escHtml(e.message)+'</div>'; }
   }
 
   function stClass(s){ return s==='wait'?'wait':s==='prog'?'prog':'done'; }
@@ -1563,16 +1658,34 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
 <div class="bd-overlay" id="bd-overlay" onclick="if(event.target===this)closeBoard()">
   <div class="bd-modal">
     <div class="bd-head">
-      <h2>📋 오류개선 및 요청사항</h2>
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="bd-admin-btn" id="bd-adm-btn" onclick="toggleAdmin()">🔐 관리자</button>
+      <div>
+        <h2>📋 오류개선 및 요청사항</h2>
+        <div id="bd-user-info" style="display:none;margin-top:5px">
+          <span id="bd-user-label" class="bd-user-label"></span>
+          <button onclick="bdLogout()" class="bd-logout-btn">로그아웃</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <button class="bd-admin-btn" id="bd-adm-btn" onclick="toggleAdmin()" style="display:none">🔐 관리자</button>
         <button class="bd-close" onclick="closeBoard()">✕</button>
       </div>
     </div>
-    <!-- 공개 제출 폼 -->
-    <div id="bd-pub" class="bd-body">
+    <!-- 로그인 뷰 -->
+    <div id="bd-login" class="bd-body">
       <div class="bd-write">
-        <div class="bd-write-title">✏️ 요청사항 접수</div>
+        <div class="bd-write-title">👤 이름을 입력해 주세요</div>
+        <input class="bd-inp" id="bd-login-name" type="text" placeholder="이름" style="margin-bottom:10px" onkeydown="if(event.key==='Enter')bdLogin()">
+        <input class="bd-inp" id="bd-login-dept" type="text" placeholder="부서 / 팀 (선택)" onkeydown="if(event.key==='Enter')bdLogin()">
+        <button class="bd-sub" style="margin-top:10px" onclick="bdLogin()">확인</button>
+      </div>
+    </div>
+    <!-- 일반 사용자 뷰 -->
+    <div id="bd-main" style="display:none;flex:1;overflow:hidden;flex-direction:column">
+      <div class="bd-tabs">
+        <button class="bd-tab on" data-tab="write" onclick="showTab('write')">✏️ 접수하기</button>
+        <button class="bd-tab" data-tab="mine" onclick="showTab('mine')">📋 내 요청 <span id="bd-mine-cnt" class="bd-cnt-badge"></span></button>
+      </div>
+      <div id="bd-write-sec" class="bd-body">
         <div class="bd-row">
           <select class="bd-sel" id="bd-cat">
             <option value="bug">🐛 오류</option>
@@ -1583,7 +1696,10 @@ html,body{height:100%;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sy
         </div>
         <textarea class="bd-inp bd-ta" id="bd-content" placeholder="내용을 입력하세요 (선택)"></textarea>
         <button class="bd-sub" onclick="submitPost()">접수하기</button>
-        <div id="bd-ok" style="display:none;margin-top:10px;text-align:center;color:#059669;font-size:14px;font-weight:600">✅ 접수되었습니다! 검토 후 반영하겠습니다.</div>
+        <div id="bd-ok" style="display:none;margin-top:10px;text-align:center;color:#059669;font-size:14px;font-weight:600">✅ 접수되었습니다!</div>
+      </div>
+      <div id="bd-mine-sec" class="bd-body" style="display:none">
+        <div id="bd-mine-list"></div>
       </div>
     </div>
     <!-- 관리자 뷰 -->
